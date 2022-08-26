@@ -14,7 +14,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: black;">
          <children>
             <AnchorPane layoutX="16.0" layoutY="1030.0" prefHeight="42.0" prefWidth="1696.0" style="-fx-background-color: red;" />
-            <TextField layoutX="37.0" layoutY="22.0" prefHeight="24.0" prefWidth="834.0" />
+            <TextField layoutX="37.0" layoutY="22.0" prefHeight="24.0" prefWidth="834.0" style="-fx-border-radius: 30px; -fx-border-color: yellow; -fx-border-width: 5px; -fx-background-color: none;" />
             <GridPane layoutX="37.0" layoutY="214.0" prefHeight="399.0" prefWidth="1077.0" style="-fx-background-color: blue;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,7 +34,7 @@
                   <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" text="Prev" />
                </children></AnchorPane>
             <Button layoutX="886.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
-            <ListView layoutX="37.0" layoutY="55.0" prefHeight="153.0" prefWidth="1077.0" />
+            <ListView layoutX="37.0" layoutY="55.0" prefHeight="153.0" prefWidth="1077.0" style="-fx-background-image: url(&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8VJxaYVUisfqNQlQNqsnh9d5zGVbJx3WVWw&amp;usqp=CAU&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: 600px;" />
          </children></AnchorPane>
   </items>
 </SplitPane>

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.09797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.09797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="92.0" style="-fx-background-color: green;">
             <children>
@@ -32,7 +32,7 @@
                         <Button layoutX="647.0" layoutY="22.0" mnemonicParsing="false" text="Next" />
                         <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" text="Prev" />
                     </children></AnchorPane>
-            <TextArea layoutX="36.0" layoutY="14.0" prefHeight="145.0" prefWidth="1078.0" style="-fx-font-size: 50;" text="Music Recommender" />
+            <TextArea layoutX="36.0" layoutY="14.0" prefHeight="145.0" prefWidth="1078.0" style="-fx-font-size: 50; -fx-background-image: &quot;src/main/resources/com/example/music_recommendation_system/headphone.jpeg&quot;;" text="Music Recommender" />
             </children></AnchorPane>
     </items>
 </SplitPane>
