@@ -34,7 +34,7 @@
                   <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" text="Prev" />
                </children></AnchorPane>
             <Button layoutX="886.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
-            <ListView layoutX="37.0" layoutY="55.0" prefHeight="153.0" prefWidth="1077.0" style="-fx-background-image: url(&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8VJxaYVUisfqNQlQNqsnh9d5zGVbJx3WVWw&amp;usqp=CAU&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: 600px;" />
+            <ListView layoutX="37.0" layoutY="55.0" prefHeight="153.0" prefWidth="1077.0" style="-fx-background-image: url(&quot;file:///home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/next.png&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: 600px;" />
          </children></AnchorPane>
   </items>
 </SplitPane>
