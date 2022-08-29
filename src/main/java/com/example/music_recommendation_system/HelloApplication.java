@@ -53,7 +53,7 @@ public class HelloApplication extends Application {
             Image image = new Image(f.toURI().toString());
             play_pause.setImage(image);
             p.next();
-
+            p.setAlbumArt();
         });
         prev.setOnMouseClicked(mouseEvent -> {
             File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");

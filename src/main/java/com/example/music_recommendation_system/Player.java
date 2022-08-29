@@ -3,15 +3,20 @@ package com.example.music_recommendation_system;
 import java.io.File;
 import java.util.ArrayList;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableMap;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class Player {
     ArrayList<String> songs;
     private boolean isPlaying;
+    Media currentMedia;
+
     String currentSong;
     int currentIndex = 0;
-MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer;
+
     public Player() {
 
         songs = new ArrayList<>();
@@ -40,33 +45,42 @@ MediaPlayer mediaPlayer;
         currentSong = songs.get(currentIndex);
         File bip = new File(songs.get(currentIndex));
         Media hit = new Media(bip.toURI().toString());
-         this.mediaPlayer = new MediaPlayer(hit);
+        this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
+        currentMedia = hit;
         isPlaying = true;
     }
 
-    public void next(){
+    public void next() {
         this.mediaPlayer.pause();
-        currentIndex = (currentIndex+1)% songs.size();
+        currentIndex = (currentIndex + 1) % songs.size();
         File bip = new File(songs.get(currentIndex));
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
+        currentMedia = hit;
         isPlaying = true;
     }
 
-    public void prev(){
+    public void prev() {
         this.mediaPlayer.pause();
-        if(currentIndex==0) currentIndex = songs.size()-1;
-        else currentIndex = currentIndex-1;
+        if (currentIndex == 0) currentIndex = songs.size() - 1;
+        else currentIndex = currentIndex - 1;
         File bip = new File(songs.get(currentIndex));
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
+        currentMedia = hit;
         isPlaying = true;
     }
 
     boolean isPlaying() {
         return isPlaying;
     }
+    public void setAlbumArt(){
+        ObservableMap<String,Object> metadata = currentMedia.getMetadata();
+        System.out.println(metadata.size());
+
+    }
+
 }
