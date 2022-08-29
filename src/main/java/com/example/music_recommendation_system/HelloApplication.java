@@ -26,7 +26,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
-        p.fetchSongs("/home/dileep/ML_Project/recommendation_system/songs");
+        p.fetchSongs("src/main/resources/songs");
         System.out.println(p.songs.size());
         boolean playing = false;
 
