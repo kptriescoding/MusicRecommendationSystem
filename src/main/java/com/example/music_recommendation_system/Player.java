@@ -34,6 +34,7 @@ public class Player {
                 songs.add(x.getPath());
         }
 
+
     }
 
     public void pause() {
@@ -52,7 +53,7 @@ public class Player {
     }
 
     public void next() {
-        this.mediaPlayer.pause();
+        if(mediaPlayer!=null)this.mediaPlayer.pause();
         currentIndex = (currentIndex + 1) % songs.size();
         File bip = new File(songs.get(currentIndex));
         Media hit = new Media(bip.toURI().toString());
@@ -78,8 +79,9 @@ public class Player {
         return isPlaying;
     }
     public void setAlbumArt(){
-        ObservableMap<String,Object> metadata = currentMedia.getMetadata();
-        System.out.println(metadata.size());
+//        ObservableMap<String,Object> metadata = currentMedia.getMetadata();
+//        System.out.println(mediaPlayer.getMedia().getDuration());
+//        System.out.println(metadata.size());
 
     }
 
