@@ -41,7 +41,28 @@ MediaPlayer mediaPlayer;
         File bip = new File(songs.get(currentIndex));
         Media hit = new Media(bip.toURI().toString());
          this.mediaPlayer = new MediaPlayer(hit);
-        mediaPlayer.play();
+        this.mediaPlayer.play();
+        isPlaying = true;
+    }
+
+    public void next(){
+        this.mediaPlayer.pause();
+        currentIndex = (currentIndex+1)% songs.size();
+        File bip = new File(songs.get(currentIndex));
+        Media hit = new Media(bip.toURI().toString());
+        this.mediaPlayer = new MediaPlayer(hit);
+        this.mediaPlayer.play();
+        isPlaying = true;
+    }
+
+    public void prev(){
+        this.mediaPlayer.pause();
+        if(currentIndex==0) currentIndex = songs.size()-1;
+        else currentIndex = currentIndex-1;
+        File bip = new File(songs.get(currentIndex));
+        Media hit = new Media(bip.toURI().toString());
+        this.mediaPlayer = new MediaPlayer(hit);
+        this.mediaPlayer.play();
         isPlaying = true;
     }
 

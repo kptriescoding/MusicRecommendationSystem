@@ -29,15 +29,10 @@ public class HelloApplication extends Application {
         p.fetchSongs("/home/dileep/ML_Project/recommendation_system/songs");
         System.out.println(p.songs.size());
         boolean playing = false;
-        Button play_id = (Button) scene.lookup("#play_id");
-        play_id.setOnMouseClicked(mouseEvent -> {
-            if (play_id.getText().equals("Play")) {
-                play_id.setText("Pause");
-            } else {
-                play_id.setText("Play");
-            }
-        });
+
         ImageView play_pause = (ImageView) scene.lookup("#play_view");
+        ImageView next = (ImageView) scene.lookup("#next_view");
+        ImageView prev = (ImageView) scene.lookup("#prev_view");
         play_pause.setOnMouseClicked(mouseEvent -> {
             if (p.isPlaying()) {
 
@@ -52,6 +47,19 @@ public class HelloApplication extends Application {
                 play_pause.setImage(image);
             }
 
+        });
+        next.setOnMouseClicked(mouseEvent -> {
+            File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");
+            Image image = new Image(f.toURI().toString());
+            play_pause.setImage(image);
+            p.next();
+
+        });
+        prev.setOnMouseClicked(mouseEvent -> {
+            File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");
+            Image image = new Image(f.toURI().toString());
+            play_pause.setImage(image);
+            p.prev();
         });
 
 //        scene = new Scene(fxmlLoader1.load(), 1280, 720);
