@@ -33,6 +33,9 @@ public class HelloApplication extends Application {
         ImageView play_pause = (ImageView) scene.lookup("#play_view");
         ImageView next = (ImageView) scene.lookup("#next_view");
         ImageView prev = (ImageView) scene.lookup("#prev_view");
+        File f1 = new File("src/main/resources/images/player/play.png");
+        Image image1 = new Image(f1.toURI().toString());
+        play_pause.setImage(image1);
         play_pause.setOnMouseClicked(mouseEvent -> {
             if (p.isPlaying()) {
 
@@ -48,6 +51,9 @@ public class HelloApplication extends Application {
             }
 
         });
+        File f2 = new File("src/main/resources/images/player/next.png");
+        Image image2 = new Image(f2.toURI().toString());
+        play_pause.setImage(image2);
         next.setOnMouseClicked(mouseEvent -> {
             File f = new File("src/main/resources/images/player/pause.png");
             Image image = new Image(f.toURI().toString());

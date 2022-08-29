@@ -33,7 +33,7 @@
 <!--                        <Button fx:id="play_id" layoutX="588.0" layoutY="22.0" mnemonicParsing="false" text="Play"/>-->
 <!--                        <Button layoutX="647.0" layoutY="22.0" mnemonicParsing="false" text="Next"/>-->
 <!--                        <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" text="Prev"/>-->
-                        <ImageView fx:id="play_view" fitHeight="42.0" fitWidth="57.0" layoutX="508.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url(&quot;file:///home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/play.png&quot;);" />
+                        <ImageView fx:id="play_view" fitHeight="42.0" fitWidth="57.0" layoutX="508.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url(&quot;file:///home/dileep/MusicRecommendationSystem/src/main/resources/images/player/play.png&quot;);" />
                         <ImageView fx:id="next_view" fitHeight="42.0" fitWidth="57.0" layoutX="600.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url(&quot;file:///home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/next.png&quot;);" />
                         <ImageView fx:id="prev_view" fitHeight="42.0" fitWidth="57.0" layoutX="415.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url(&quot;file:///home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/prev.png&quot;);" />
 
