@@ -36,27 +36,27 @@ public class HelloApplication extends Application {
         play_pause.setOnMouseClicked(mouseEvent -> {
             if (p.isPlaying()) {
 
-                File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/play.png");
+                File f = new File("src/main/resources/images/player/play.png");
                 Image image = new Image(f.toURI().toString());
                 play_pause.setImage(image);
                 p.pause();
             } else {
                 p.play();
-                File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");
+                File f = new File("src/main/resources/images/player/pause.png");
                 Image image = new Image(f.toURI().toString());
                 play_pause.setImage(image);
             }
 
         });
         next.setOnMouseClicked(mouseEvent -> {
-            File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");
+            File f = new File("src/main/resources/images/player/pause.png");
             Image image = new Image(f.toURI().toString());
             play_pause.setImage(image);
             p.next();
             p.setAlbumArt();
         });
         prev.setOnMouseClicked(mouseEvent -> {
-            File f = new File("/home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/player/pause.png");
+            File f = new File("src/main/resources/images/player/pause.png");
             Image image = new Image(f.toURI().toString());
             play_pause.setImage(image);
             p.prev();
