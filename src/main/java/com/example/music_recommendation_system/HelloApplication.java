@@ -17,24 +17,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+    ImageView play_pause, next, prev;
+    Button search;
+
     @Override
     public void start(Stage stage) throws IOException {
         Player p = new Player();
+        p.fetchSongs("src/main/resources/songs");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
-        p.fetchSongs("src/main/resources/songs");
-        System.out.println(p.songs.size());
-        boolean playing = false;
+        setUpStage(p, scene,stage);
 
-        ImageView play_pause = (ImageView) scene.lookup("#play_view");
-        ImageView next = (ImageView) scene.lookup("#next_view");
-        ImageView prev = (ImageView) scene.lookup("#prev_view");
+
+
+
+    }
+
+    static void setUpStage(Player p, Scene scene,Stage stage) {
+
+        System.out.println(p.songs.size());
+//        boolean playing = false;
+        ImageView play_pause, next, prev;
+        play_pause = (ImageView) scene.lookup("#play_view");
+        next = (ImageView) scene.lookup("#next_view");
+        prev = (ImageView) scene.lookup("#prev_view");
         File f1 = new File("src/main/resources/images/player/play.png");
         Image image1 = new Image(f1.toURI().toString());
+
         play_pause.setImage(image1);
         play_pause.setOnMouseClicked(mouseEvent -> {
             if (p.isPlaying()) {
@@ -68,9 +80,52 @@ public class HelloApplication extends Application {
             p.prev();
         });
 
-//        scene = new Scene(fxmlLoader1.load(), 1280, 720);
-//        stage.setScene(scene);
-//        stage.show();
+
+        Button search = (Button) scene.lookup("#search");
+        Button home = (Button) scene.lookup("#home");
+        Button playlist = (Button) scene.lookup("#playlist");
+        search.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
+            Scene scene1 = null;
+            try {
+
+                scene1 = new Scene(fxmlLoader1.load(), 1280, 720);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.close();
+            stage.setScene(scene1);
+            stage.show();
+            setUpStage(p, scene1,stage);
+        });
+        home.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
+            Scene scene1 = null;
+            try {
+
+                scene1 = new Scene(fxmlLoader1.load(), 1280, 720);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.close();
+            stage.setScene(scene1);
+            stage.show();
+            setUpStage(p, scene1,stage);
+        });
+//        playlist.setOnMouseClicked(mouseEvent -> {
+//            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
+//            Scene scene1 = null;
+//            try {
+//
+//                scene1 = new Scene(fxmlLoader1.load(), 1280, 720);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            stage.close();
+//            stage.setScene(scene1);
+//            stage.show();
+//            setUpStage(p, scene1,stage);
+//        });
 
     }
 
