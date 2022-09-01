@@ -12,7 +12,8 @@
                     style="-fx-background-color: green;">
             <children>
                 <Button layoutX="30.0" layoutY="78.0" mnemonicParsing="false" text="Home" prefWidth="70" fx:id="home"/>
-                <Button layoutX="30.0" layoutY="134.0" mnemonicParsing="false" text="Search" prefWidth="70" fx:id="search"/>
+                <Button layoutX="30.0" layoutY="134.0" mnemonicParsing="false" text="Search" prefWidth="70"
+                        fx:id="search"/>
                 <Button layoutX="30.0" layoutY="195.0" mnemonicParsing="false" text="Like" prefWidth="70" fx:id="like"/>
             </children>
         </AnchorPane>
@@ -22,6 +23,7 @@
                 <AnchorPane layoutX="16.0" layoutY="1030.0" prefHeight="42.0" prefWidth="1696.0"
                             style="-fx-background-color: red;"/>
                 <GridPane layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0"
+                          fx:id="songs_grid_pane"
                           style="-fx-background-color: #ffc400;">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -54,7 +56,9 @@
                 </AnchorPane>
                 <TextArea layoutX="36.0" layoutY="14.0" prefHeight="145.0" prefWidth="1078.0"
                           style="-fx-font-size: 50; -fx-background-image: url(&quot;file:///home/dileep/Desktop/MusicRecommendationSystem/src/main/resources/images/search/headphone.jpeg&quot;);"
-                          text="Music Recommender"/>
+                          text="Music Recommender">
+
+                </TextArea>
             </children>
         </AnchorPane>
     </items>
