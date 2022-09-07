@@ -17,6 +17,9 @@ public class SongData {
         artist=row.getString("Artist");
         songName= row.getString("SongName");
     }
+    public String toString(){
+        return String.format("  %-10s  |  %-50s  |  %-50s  |  %-20s  |  %-50s  |  %-20s  |  %-70s  \n",songId,songName,artist,language,album,composer,path);
+    }
 
     public String getSongName() {
         return songName;

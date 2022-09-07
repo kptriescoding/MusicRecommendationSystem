@@ -1,14 +1,16 @@
 package RecommedationSystem;
 import tech.tablesaw.api.*;
 import tech.tablesaw.columns.Column;
+import tech.tablesaw.selection.Selection;
 
 import java.util.*;
 import static tech.tablesaw.aggregate.AggregateFunctions.sum;
 
 public class RecommenderSystem extends MLTools{
-    Table df_songs, df_songs_data, df_user;
-    int no_of_songs, no_of_similar_songs, no_of_users;
-    String songPath,userTablePath;
+    private Table df_songs;
+    final private Table  df_songs_data, df_user;
+   final private int no_of_songs, no_of_similar_songs, no_of_users,no_of_search_songs;
+    final private String songPath,userTablePath;
     public RecommenderSystem(String songPath,String userTablePath) {
         this.songPath=songPath;
         this.userTablePath=userTablePath;
@@ -36,6 +38,7 @@ public class RecommenderSystem extends MLTools{
         this.no_of_songs = 5;
         this.no_of_users = 20;
         this.no_of_similar_songs = 3;
+        this.no_of_search_songs=15;
     }
 
     public Table findSimilarSongs(String song){
@@ -66,7 +69,9 @@ public class RecommenderSystem extends MLTools{
         }
         DoubleColumn cosineColumn=DoubleColumn.create("CosineSimilarity",cosineSimilarities);
         df_user.addColumns(cosineColumn);
-        return df_user.sortOn("CosineSimilarity").first(no_of_users);
+        Table returnUsers=df_user.sortOn("CosineSimilarity").first(no_of_users);
+        df_user.removeColumns(cosineColumn);
+        return returnUsers;
     }
     public void addNewRow(String user){
         Row userRow=df_user.row(0);
@@ -96,7 +101,6 @@ public class RecommenderSystem extends MLTools{
         while(itr.hasNext()&&songArr.size()<no_of_songs){
             songArr.add(topSongs.get((Double) itr.next()));
         }
-        System.out.println(songArr);
         Table reqSongs=null;
         for(int i=0;i<songArr.size();i++) {
         String curSong = songArr.get(i);
@@ -136,12 +140,45 @@ public class RecommenderSystem extends MLTools{
         df_user.write().csv(userTablePath);
 
     }
+    public Table searchBarRecommender(String search){
+        df_songs=df_songs.sortOn("-TotalFrequency");
+        StringColumn searchColumn=df_songs.stringColumn("SongName");
+        String temp;
+        ArrayList<String> originalSongsName=new ArrayList<>();
+        for(int i=0;i<searchColumn.size();i++){
+            temp=searchColumn.get(i);
+            originalSongsName.add(temp);
+            temp=temp.toLowerCase();
+            searchColumn.set(i,temp);
+        }
+        Selection searchFilter=searchColumn.startsWith(search);
+        for(int i=0;i<searchColumn.size();i++)
+            searchColumn.set(i,originalSongsName.get(i));
+        Table recommendedSongs=df_songs.where(searchFilter);
+        searchFilter=searchColumn.containsString(search);
+        recommendedSongs.append(df_songs.where(searchFilter));
+        recommendedSongs.append(df_songs);
+        return recommendedSongs.dropDuplicateRows().first(no_of_search_songs);
+    }
     public static void main(String[] args){
         String songPath="src/main/java/RecommedationSystem/song_data.csv";
 String userTablePath = "src/main/java/RecommedationSystem/user_table.csv";
-       Table osme=new RecommenderSystem(songPath,userTablePath).getRecommendation("user300");
-        System.out.println(osme);
-//       Playlist playlist=new Playlist(osme);
-//        new RecommenderSystem(songPath,userTablePath).updateFrequency("song4","user0");
+
+// Search Recommender
+RecommenderSystem recommenderSystem=new RecommenderSystem(songPath,userTablePath);
+        Table searchResults = recommenderSystem.searchBarRecommender("paat");
+        System.out.println("Search Results");
+        Playlist recommendedSongs=new Playlist(searchResults);
+        System.out.println(recommendedSongs +"\n\n\n");
+
+        //User Recommendation
+        System.out.println("User Recommended Songs");
+       Table userRecommnedation=recommenderSystem.getRecommendation("user5");
+       Playlist playlist=new Playlist(userRecommnedation);
+        System.out.println(playlist);
+
+
+        //Update Frequency
+        recommenderSystem.updateFrequency("song4","user0");
     }
 }
