@@ -1,0 +1,31 @@
+SongId,SongName,Artist,Language,Album,Composer,Release Date,Path,TotalFrequency
+song0,Paatashaala - MyMp3Bhojpuri.In,Vijay Prakash | MyMp3Bhojpuri.In,Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Paatashaala.mp3,10443
+song1,Mungaru Maleye - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Mungaru Maleye.mp3,9729
+song2,Oorigobba Raaja - MyMp3Bhojpuri.In,"Puneeth Rajkumar, Ramya Behara | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Oorigobba Raaja.mp3,10139
+song3,Ee Prema - PagalWorld.NL,"Ramya Bhat Abhyankar, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ee Prema.mp3,9348
+song4,Ivanu Geleyanalla - PagalWorld.NL,Shreya Ghoshal,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ivanu Geleyanalla.mp3,9552
+song5,Neenaade Naa - MyMp3Bhojpuri.In,"Armaan Malik, Shreya Ghoshal | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Neenaade Naa.mp3,9946
+song6,Kesariya Rangu - PagalWorld.NL,"Sanjith Hegde, Sid Sriram",Kannada,Brahmastra (2022) Kannada | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Kesariya Rangu.mp3,9646
+song7,Onde Ondu Saari - PagalWorld.NL,"Kunal Ganjawala, Priya Hemesh",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Onde Ondu Saari.mp3,9852
+song8,Kannau Hodiyaka - MyMp3Bhojpuri.In,Shreya Ghoshal | MyMp3Bhojpuri.In,Kannada,Robert (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Kannau Hodiyaka.mp3,10331
+song9,Torture Song - 777 Charlie - PagalWorld.NL,Vijay Prakash,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Torture Song - 777 Charlie.mp3,9943
+song10,Kunnidu Kunnidu Baare - PagalWorld.NL,"Udit Narayan, Sunidhi Chauhan, Stefen",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Kunnidu Kunnidu Baare.mp3,10803
+song11,Sanchariyagu Nee - PagalWorld.NL,"Vijay Prakash, Rakshita Suresh, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Sanchariyagu Nee.mp3,10578
+song12,Sahapaati - 777 Charlie - PagalWorld.NL,Aarna Shetty,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Sahapaati - 777-Charlie.mp3,9950
+song13,Ninadene Januma - PagalWorld.NL,Nakul Abhyankar,Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ninadene Januma.mp3,10657
+song14,Anisuthide - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Anisuthide.mp3,9732
+song15,Paatashaala - MyMp3Bhojpuri.In,Vijay Prakash | MyMp3Bhojpuri.In,Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Paatashaala.mp3,10253
+song16,Mungaru Maleye - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Mungaru Maleye.mp3,10042
+song17,Oorigobba Raaja - MyMp3Bhojpuri.In,"Puneeth Rajkumar, Ramya Behara | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Oorigobba Raaja.mp3,10034
+song18,Ee Prema - PagalWorld.NL,"Ramya Bhat Abhyankar, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ee Prema.mp3,9860
+song19,Ivanu Geleyanalla - PagalWorld.NL,Shreya Ghoshal,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ivanu Geleyanalla.mp3,10225
+song20,Neenaade Naa - MyMp3Bhojpuri.In,"Armaan Malik, Shreya Ghoshal | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Neenaade Naa.mp3,9668
+song21,Kesariya Rangu - PagalWorld.NL,"Sanjith Hegde, Sid Sriram",Kannada,Brahmastra (2022) Kannada | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Kesariya Rangu.mp3,9849
+song22,Onde Ondu Saari - PagalWorld.NL,"Kunal Ganjawala, Priya Hemesh",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Onde Ondu Saari.mp3,9714
+song23,Kannau Hodiyaka - MyMp3Bhojpuri.In,Shreya Ghoshal | MyMp3Bhojpuri.In,Kannada,Robert (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,/home/dileep/ML_Project/recommendation_system/songs/Kannau Hodiyaka.mp3,9847
+song24,Torture Song - 777 Charlie - PagalWorld.NL,Vijay Prakash,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Torture Song - 777 Charlie.mp3,9662
+song25,Kunnidu Kunnidu Baare - PagalWorld.NL,"Udit Narayan, Sunidhi Chauhan, Stefen",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Kunnidu Kunnidu Baare.mp3,9435
+song26,Sanchariyagu Nee - PagalWorld.NL,"Vijay Prakash, Rakshita Suresh, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Sanchariyagu Nee.mp3,10048
+song27,Sahapaati - 777 Charlie - PagalWorld.NL,Aarna Shetty,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Sahapaati - 777-Charlie.mp3,9739
+song28,Ninadene Januma - PagalWorld.NL,Nakul Abhyankar,Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Ninadene Januma.mp3,10767
+song29,Anisuthide - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,/home/dileep/ML_Project/recommendation_system/songs/Anisuthide.mp3,9382
