@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     ImageView play_pause, next, prev;
     Button search;
-
     @Override
     public void start(Stage stage) throws IOException {
         Player p = new Player();
@@ -29,14 +29,14 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        setUpStage(p, scene,stage);
+        setUpStage(p, scene,stage,"home");
 
 
 
 
     }
 
-    static void setUpStage(Player p, Scene scene,Stage stage) {
+    static void setUpStage(Player p, Scene scene,Stage stage, String present_scene) {
 
         System.out.println(p.songs.size());
 //        boolean playing = false;
@@ -63,9 +63,7 @@ public class HelloApplication extends Application {
             }
 
         });
-        File f2 = new File("src/main/resources/images/player/next.png");
-        Image image2 = new Image(f2.toURI().toString());
-        play_pause.setImage(image2);
+
         next.setOnMouseClicked(mouseEvent -> {
             File f = new File("src/main/resources/images/player/pause.png");
             Image image = new Image(f.toURI().toString());
@@ -96,7 +94,7 @@ public class HelloApplication extends Application {
             stage.close();
             stage.setScene(scene1);
             stage.show();
-            setUpStage(p, scene1,stage);
+            setUpStage(p, scene1,stage,"search");
         });
         home.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
@@ -110,7 +108,7 @@ public class HelloApplication extends Application {
             stage.close();
             stage.setScene(scene1);
             stage.show();
-            setUpStage(p, scene1,stage);
+            setUpStage(p, scene1,stage,"home");
         });
 //        playlist.setOnMouseClicked(mouseEvent -> {
 //            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));

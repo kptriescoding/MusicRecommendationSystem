@@ -8,6 +8,7 @@ import javafx.collections.ObservableMap;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+
 public class Player {
     ArrayList<String> songs;
     private boolean isPlaying;

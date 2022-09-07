@@ -42,7 +42,7 @@
 
                     </children>
                 </AnchorPane>
-                <ListView layoutX="23.0" layoutY="213.0" prefHeight="408.0" prefWidth="1105.0"/>
+                <ListView layoutX="23.0" layoutY="213.0" prefHeight="408.0" prefWidth="1105.0" fx:id="list_view_play_list"/>
             </children>
         </AnchorPane>
     </items>
