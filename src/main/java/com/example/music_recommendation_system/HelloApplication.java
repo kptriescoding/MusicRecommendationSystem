@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -84,25 +85,27 @@ public class HelloApplication extends Application {
         FlowPane pane = new FlowPane();
         Color col = Color.rgb(42,42,42);
 
-        CornerRadii corn = new CornerRadii(20);
+        CornerRadii corn = new CornerRadii(0);
 
-        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        Background background = new Background(new BackgroundFill(col,corn, Insets.EMPTY));
 
         Label l = new Label(song.getSongName());
         l.setTextFill(Color.rgb(254,255,254));
 
-        pane.setOrientation(Orientation.VERTICAL);
+        pane.setOrientation(Orientation.HORIZONTAL);
         l.setMaxHeight(Double.MAX_VALUE);
         Label cnt = new Label(song.getSongId());
         cnt.setMaxHeight(Double.MAX_VALUE);
         ImageView album = new ImageView(p.mapFromSongToImage.get(song));
         album.setPreserveRatio(true);
+        album.setX(pane.getLayoutX());
         l.setPrefWidth(150);
         album.prefHeight(80);
+        pane.setRowValignment(VPos.BOTTOM);
         //            TRBL
         album.setFitHeight(80);
         l.setPadding(new Insets(5, 5, 5, 5));
-        pane.setPadding(new Insets(15, 10, 15, 10));
+        pane.setPadding(new Insets(15, 10, 15, 5));
         l.setAlignment(Pos.BASELINE_RIGHT);
 
 
@@ -110,7 +113,7 @@ public class HelloApplication extends Application {
         pane.getChildren().add(album);
 
         pane.getChildren().addAll(l);
-        pane.getChildren().add(cnt);
+//        pane.getChildren().add(cnt);
         pane.setBackground(background);
 
         return pane;
@@ -137,7 +140,7 @@ public class HelloApplication extends Application {
             songsList.setPrefWidth(1078);
             songsList.setPrefHeight(425);
 //            TRBL
-            songsList.setPadding(new Insets(10, 60, 10, 60));
+            songsList.setPadding(new Insets(10, 60, 10, 30));
             songsList.setHgap(20);
             songsList.setVgap(10);
             songsList.setAlignment(Pos.CENTER);
