@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
+
+
 <SplitPane dividerPositions="0.09797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
            minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/16"
            xmlns:fx="http://javafx.com/fxml/1">
@@ -64,3 +66,4 @@
         </AnchorPane>
     </items>
 </SplitPane>
+
