@@ -144,7 +144,6 @@ public class RecommenderSystem extends MLTools {
         fCol.set(index, f);
         dfUser.replaceColumn(songId, fCol);
         dfUser.write().csv(userTablePath);
-
     }
 
     public Table searchBarRecommender(String search) {
@@ -169,8 +168,8 @@ public class RecommenderSystem extends MLTools {
     }
 
     public static void main(String[] args) {
-        String songPath = "src/main/java/RecommedationSystem/song_data.csv";
-        String userTablePath = "src/main/java/RecommedationSystem/user_table.csv";
+        String songPath = "src/main/java/RecommedationSystem/CSVFiles/song_data.csv";
+        String userTablePath = "src/main/java/RecommedationSystem/CSVFiles/user_table.csv";
 
 // Search Recommender
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
