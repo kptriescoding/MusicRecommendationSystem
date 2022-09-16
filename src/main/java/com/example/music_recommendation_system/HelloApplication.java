@@ -68,12 +68,13 @@ public class HelloApplication extends Application {
         cnt.setMaxHeight(Double.MAX_VALUE);
         ImageView album = new ImageView(p.mapFromSongToImage.get(song));
         album.setPreserveRatio(true);
-l.setPrefWidth(150);
+        l.setPrefWidth(150);
         album.prefHeight(80);
         //            TRBL
         album.setFitHeight(80);
-        pane.setPadding(new Insets(15,10,15,10));
-l.setAlignment(Pos.BASELINE_RIGHT);
+        l.setPadding(new Insets(5, 5, 5, 5));
+        pane.setPadding(new Insets(15, 10, 15, 10));
+        l.setAlignment(Pos.BASELINE_RIGHT);
 
 
         pane.setAlignment(Pos.CENTER);
@@ -92,11 +93,11 @@ l.setAlignment(Pos.BASELINE_RIGHT);
 
 
 //        boolean playing = false;
-universalStage = stage;
+        universalStage = stage;
 
 
         if (present_scene.equals("home")) {
-
+            HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
             ImageView play_pause, next, prev;
             play_pause = (ImageView) homeScene.lookup("#play_view");
             next = (ImageView) homeScene.lookup("#next_view");
@@ -120,9 +121,9 @@ universalStage = stage;
                     c.setPrefHeight(300);
                     songsList.getRowConstraints().add(c);
                 }
-                Pane pane = getSongPane(p.songs.get(i));
+                FlowPane pane = getSongPane(p.songs.get(i));
                 songsList.add(pane, colCnt, rowCnt);
-
+                mapFromViewToSongId.put(pane, i);
                 colCnt++;
                 if (colCnt > cols) {
                     rowCnt++;
@@ -130,7 +131,16 @@ universalStage = stage;
 
                 }
             }
+            songsList.getChildren().forEach(songPane -> {
+                songPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        p.playSongWithId(mapFromViewToSongId.get(songPane));
 
+                        updatePlayPause(homeScene,p);
+                    }
+                });
+            });
             updatePlayPause(homeScene, p);
             play_pause.setOnMouseClicked(mouseEvent -> {
                 if (p.isPlaying()) {
@@ -146,10 +156,14 @@ universalStage = stage;
                 p.next();
                 updatePlayPause(homeScene, p);
 
+
+
             });
             prev.setOnMouseClicked(mouseEvent -> {
                 p.prev();
                 updatePlayPause(homeScene, p);
+
+
             });
 
 
@@ -163,23 +177,11 @@ universalStage = stage;
                 universalStage.show();
                 setUpStage(playListScene, universalStage, "search");
                 updatePlayPause(playListScene, p);
+
+
             });
 
-//        playlist.setOnMouseClicked(mouseEvent -> {
-//            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
-//            Scene scene1 = null;
-//            try {
-//
-//                scene1 = new Scene(fxmlLoader1.load(), 1280, 720);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            stage.close();
-//            stage.setScene(scene1);
-//            stage.show();
-//            setUpStage(p, scene1,stage);
-//        });
-        }else if(present_scene.equals("search")){
+        } else if (present_scene.equals("search")) {
             ImageView play_pause, next, prev;
             play_pause = (ImageView) playListScene.lookup("#play_view");
             next = (ImageView) playListScene.lookup("#next_view");
@@ -218,6 +220,8 @@ universalStage = stage;
                 universalStage.show();
                 setUpStage(homeScene, universalStage, "home");
                 updatePlayPause(homeScene, p);
+
+
             });
         }
     }
@@ -237,12 +241,9 @@ universalStage = stage;
         } else {
             play_pause.setImage(playImage);
         }
+        p.updateAlbumArt(scene);
     }
-//
-//    static void SetPlayListScene(Player P, Stage stage, Scene scene) {
-//
-//
-//    }
+
 
     public static void main(String[] args) {
         launch();

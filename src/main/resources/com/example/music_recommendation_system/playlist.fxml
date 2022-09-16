@@ -27,7 +27,7 @@
                         <!--                        <Button layoutX="588.0" layoutY="22.0" mnemonicParsing="false" text="Play" />-->
                         <!--                        <Button layoutX="647.0" layoutY="22.0" mnemonicParsing="false" text="Next" />-->
                         <!--                        <Button layoutX="525.0" layoutY="22.0" mnemonicParsing="false" text="Prev" />-->
-
+                        <ImageView fx:id="album_art_current_song" fitHeight="51.0" fitWidth="60.0" layoutX="38.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
 
                         <ImageView fx:id="play_view" fitHeight="42.0" fitWidth="57.0" layoutX="508.0" layoutY="16.0"
                                    pickOnBounds="true" preserveRatio="true"

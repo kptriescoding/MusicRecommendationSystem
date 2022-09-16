@@ -10,7 +10,9 @@ import RecommedationSystem.SongData;
 import javafx.beans.Observable;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tech.tablesaw.api.Table;
@@ -19,6 +21,7 @@ import tech.tablesaw.api.Table;
 public class Player {
     ArrayList<SongData> songs;
     HashMap<SongData, Image> mapFromSongToImage;
+
     private boolean isPlaying;
     Media currentMedia;
     SongData currentSong;
@@ -130,60 +133,27 @@ public class Player {
     }
 
 
+    public void playSongWithId(int id){
+        if(id==currentIndex) return;
+        if(this.mediaPlayer!=null)
+            this.mediaPlayer.pause();
+        currentIndex = id;
+        File bip = new File(songs.get(currentIndex).getPath());
+        Media hit = new Media(bip.toURI().toString());
+        this.mediaPlayer = new MediaPlayer(hit);
+        this.mediaPlayer.play();
+        currentMedia = hit;
+        isPlaying = true;
+
+    }
+
+    public void updateAlbumArt(Scene scene){
+        SongData currentSong = songs.get(currentIndex);
+        ImageView album_art = (ImageView) scene.lookup("#album_art_current_song");
+        album_art.setImage(mapFromSongToImage.get(currentSong));
+    }
 }
 
-class Counter {
-    int count;
 
-    Counter() {
-        count = 0;
-    }
 
-    void increment() {
-        count++;
-    }
 
-    int getCount() {
-        return count;
-    }
-}
-
-// class Example extends AsyncTask {
-//    private UIController controller;
-//    public Example(UIController controller) {
-//        this.controller = controller;
-//    }
-//    @Override
-//    void onPreExecute() {
-//
-//        //This method runs on UI Thread before background task has started
-//        this.controller.updateProgressLabel("Starting Download")
-//    }
-//    @Override
-//    void doInBackground() {
-//        //This method runs on background thread
-//
-//        boolean downloading = true;
-//
-//        while (downloading){
-//
-//            /*
-//             * Your download code
-//             */
-//
-//            double progress = 65.5 //Your progress calculation
-//            publishProgress(progress);
-//        }
-//    }
-//    @Override
-//    void onPostExecute() {
-//        //This method runs on UI Thread after background task has done
-//        this.controller.updateProgressLabel("Download is Done");
-//    }
-//    @Override
-//    void progressCallback(Object... params) {
-//        //This method update your UI Thread during the execution of background thread
-//        double progress = (double)params[0]
-//        this.controller.updateProgress(progress);
-//    }
-//}
