@@ -34,7 +34,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
-        p = new Player();
+
 //        p.fetchSongs("src/main/resources/songs");
         FXMLLoader homeLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         FXMLLoader playListLoader = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
@@ -42,7 +42,7 @@ public class HelloApplication extends Application {
         universalStage = stage;
         homeScene = new Scene(homeLoader.load(), 1280, 720);
         playListScene = new Scene(playListLoader.load(), 1280, 720);
-
+        p = new Player(stage,homeScene);
         p.addAlbumArts();
 
 
@@ -94,7 +94,7 @@ public class HelloApplication extends Application {
 
 //        boolean playing = false;
         universalStage = stage;
-
+        updatePlayPause(scene, p);
 
         if (present_scene.equals("home")) {
             HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
@@ -137,7 +137,7 @@ public class HelloApplication extends Application {
                     public void handle(MouseEvent mouseEvent) {
                         p.playSongWithId(mapFromViewToSongId.get(songPane));
 
-                        updatePlayPause(homeScene,p);
+                        updatePlayPause(homeScene, p);
                     }
                 });
             });
@@ -155,7 +155,6 @@ public class HelloApplication extends Application {
             next.setOnMouseClicked(mouseEvent -> {
                 p.next();
                 updatePlayPause(homeScene, p);
-
 
 
             });
