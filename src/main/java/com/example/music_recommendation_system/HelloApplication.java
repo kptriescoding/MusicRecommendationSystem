@@ -62,23 +62,25 @@ public class HelloApplication extends Application {
 
         Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
         Label l = new Label(song.getSongName());
-        RowConstraints c = new RowConstraints();
-        c.setPrefHeight(100);
+        pane.setOrientation(Orientation.VERTICAL);
         l.setMaxHeight(Double.MAX_VALUE);
         Label cnt = new Label(song.getSongId());
         cnt.setMaxHeight(Double.MAX_VALUE);
         ImageView album = new ImageView(p.mapFromSongToImage.get(song));
         album.setPreserveRatio(true);
-        album.minWidth(80);
+l.setPrefWidth(150);
+        album.prefHeight(80);
         //            TRBL
+        album.setFitHeight(80);
+        pane.setPadding(new Insets(15,10,15,10));
+l.setAlignment(Pos.BASELINE_RIGHT);
 
-        pane.setPadding(new Insets(15,20,15,20));
-        cnt.setAlignment(Pos.CENTER);
-        pane.setOrientation(Orientation.VERTICAL);
+
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(album);
 
-        pane.getChildren().addAll(l, cnt);
+        pane.getChildren().addAll(l);
+        pane.getChildren().add(cnt);
         pane.setBackground(background);
 
         return pane;
