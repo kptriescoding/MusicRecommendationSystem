@@ -102,12 +102,16 @@ public class Player {
     }
 
     public void play() {
-        currentSong = songs.get(currentIndex);
-        File bip = new File(songs.get(currentIndex).getPath());
-        Media hit = new Media(bip.toURI().toString());
-        this.mediaPlayer = new MediaPlayer(hit);
+        if(currentSong==null) {
+            currentSong = songs.get(currentIndex);
+            File bip = new File(songs.get(currentIndex).getPath());
+            Media hit = new Media(bip.toURI().toString());
+
+            this.mediaPlayer = new MediaPlayer(hit);
+            currentMedia = hit;
+        }
         this.mediaPlayer.play();
-        currentMedia = hit;
+
         isPlaying = true;
     }
 

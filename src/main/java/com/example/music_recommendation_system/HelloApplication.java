@@ -13,11 +13,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -50,18 +54,43 @@ public class HelloApplication extends Application {
         universalStage.setScene(homeScene);
         universalStage.show();
         setUpStage(homeScene, universalStage, "home");
+        homeScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
+            if(keyEvent.getCode()== KeyCode.SPACE){
+                if (p.isPlaying()) {
+                    p.pause();
+                    updatePlayPause(homeScene, p);
+                } else {
+                    p.play();
+                    updatePlayPause(homeScene, p);
+                }
+            }
+        });
+        playListScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
+            if(keyEvent.getCode()== KeyCode.SPACE){
+                if (p.isPlaying()) {
+                    p.pause();
+                    updatePlayPause(playListScene, p);
+                } else {
+                    p.play();
+                    updatePlayPause(playListScene, p);
+                }
+            }
+        });
 
 
     }
 
     static FlowPane getSongPane(SongData song) {
         FlowPane pane = new FlowPane();
-        Color col = Color.rgb(205, 205, 205);
+        Color col = Color.rgb(42,42,42);
 
         CornerRadii corn = new CornerRadii(20);
 
         Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+
         Label l = new Label(song.getSongName());
+        l.setTextFill(Color.rgb(254,255,254));
+
         pane.setOrientation(Orientation.VERTICAL);
         l.setMaxHeight(Double.MAX_VALUE);
         Label cnt = new Label(song.getSongId());
@@ -178,6 +207,12 @@ public class HelloApplication extends Application {
                 updatePlayPause(playListScene, p);
 
 
+            });
+            home.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    setUpStage(homeScene,universalStage,"home");
+                }
             });
 
         } else if (present_scene.equals("search")) {
