@@ -7,6 +7,7 @@ import java.util.HashMap;
 import RecommedationSystem.Playlist;
 import RecommedationSystem.RecommenderSystem;
 import RecommedationSystem.SongData;
+import javafx.application.Preloader;
 import javafx.beans.Observable;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
@@ -15,13 +16,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import tech.tablesaw.api.Table;
 
 
 public class Player {
     ArrayList<SongData> songs;
     HashMap<SongData, Image> mapFromSongToImage;
-
+    Stage stage;
+    Scene scene;
     private boolean isPlaying;
     Media currentMedia;
     SongData currentSong;
@@ -29,9 +32,12 @@ public class Player {
     int count = 0;
     MediaPlayer mediaPlayer;
 
-    public Player() throws InterruptedException {
-        String songPath = "src/main/java/RecommedationSystem/CSVFiles/song_data.csv";
-        String userTablePath = "src/main/java/RecommedationSystem/CSVFiles/user_table.csv";
+
+    public Player(Stage stage,Scene scene) throws InterruptedException {
+        this.stage = stage;
+        this.scene = scene;
+        String songPath = "src/main/java/CSVFiles/song_data.csv";
+        String userTablePath = "src/main/java/CSVFiles/user_table.csv";
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
         Table userRecommnedation = recommenderSystem.searchBarRecommender("");
         Playlist playlist = new Playlist(userRecommnedation);
@@ -66,6 +72,7 @@ public class Player {
                         mapFromSongToImage.put(song, image);
                         count++;
                         System.out.println(count);
+                        stage.setScene(scene);
                     }
                     ;
 
@@ -96,12 +103,16 @@ public class Player {
     }
 
     public void play() {
-        currentSong = songs.get(currentIndex);
-        File bip = new File(songs.get(currentIndex).getPath());
-        Media hit = new Media(bip.toURI().toString());
-        this.mediaPlayer = new MediaPlayer(hit);
+        if(currentSong==null) {
+            currentSong = songs.get(currentIndex);
+            File bip = new File(songs.get(currentIndex).getPath());
+            Media hit = new Media(bip.toURI().toString());
+
+            this.mediaPlayer = new MediaPlayer(hit);
+            currentMedia = hit;
+        }
         this.mediaPlayer.play();
-        currentMedia = hit;
+
         isPlaying = true;
     }
 

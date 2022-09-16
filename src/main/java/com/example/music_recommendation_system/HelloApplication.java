@@ -7,17 +7,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -34,7 +39,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
-        p = new Player();
+
 //        p.fetchSongs("src/main/resources/songs");
         FXMLLoader homeLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         FXMLLoader playListLoader = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
@@ -42,7 +47,7 @@ public class HelloApplication extends Application {
         universalStage = stage;
         homeScene = new Scene(homeLoader.load(), 1280, 720);
         playListScene = new Scene(playListLoader.load(), 1280, 720);
-
+        p = new Player(stage,homeScene);
         p.addAlbumArts();
 
 
@@ -50,30 +55,57 @@ public class HelloApplication extends Application {
         universalStage.setScene(homeScene);
         universalStage.show();
         setUpStage(homeScene, universalStage, "home");
+        homeScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
+            if(keyEvent.getCode()== KeyCode.SPACE){
+                if (p.isPlaying()) {
+                    p.pause();
+                    updatePlayPause(homeScene, p);
+                } else {
+                    p.play();
+                    updatePlayPause(homeScene, p);
+                }
+            }
+        });
+        playListScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
+            if(keyEvent.getCode()== KeyCode.SPACE){
+                if (p.isPlaying()) {
+                    p.pause();
+                    updatePlayPause(playListScene, p);
+                } else {
+                    p.play();
+                    updatePlayPause(playListScene, p);
+                }
+            }
+        });
 
 
     }
 
     static FlowPane getSongPane(SongData song) {
         FlowPane pane = new FlowPane();
-        Color col = Color.rgb(205, 205, 205);
+        Color col = Color.rgb(42,42,42);
 
-        CornerRadii corn = new CornerRadii(20);
+        CornerRadii corn = new CornerRadii(0);
 
-        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
+        Background background = new Background(new BackgroundFill(col,corn, Insets.EMPTY));
+
         Label l = new Label(song.getSongName());
-        pane.setOrientation(Orientation.VERTICAL);
+        l.setTextFill(Color.rgb(254,255,254));
+
+        pane.setOrientation(Orientation.HORIZONTAL);
         l.setMaxHeight(Double.MAX_VALUE);
         Label cnt = new Label(song.getSongId());
         cnt.setMaxHeight(Double.MAX_VALUE);
         ImageView album = new ImageView(p.mapFromSongToImage.get(song));
         album.setPreserveRatio(true);
+        album.setX(pane.getLayoutX());
         l.setPrefWidth(150);
         album.prefHeight(80);
+        pane.setRowValignment(VPos.BOTTOM);
         //            TRBL
         album.setFitHeight(80);
         l.setPadding(new Insets(5, 5, 5, 5));
-        pane.setPadding(new Insets(15, 10, 15, 10));
+        pane.setPadding(new Insets(15, 10, 15, 5));
         l.setAlignment(Pos.BASELINE_RIGHT);
 
 
@@ -81,7 +113,7 @@ public class HelloApplication extends Application {
         pane.getChildren().add(album);
 
         pane.getChildren().addAll(l);
-        pane.getChildren().add(cnt);
+//        pane.getChildren().add(cnt);
         pane.setBackground(background);
 
         return pane;
@@ -94,7 +126,7 @@ public class HelloApplication extends Application {
 
 //        boolean playing = false;
         universalStage = stage;
-
+        updatePlayPause(scene, p);
 
         if (present_scene.equals("home")) {
             HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
@@ -108,7 +140,7 @@ public class HelloApplication extends Application {
             songsList.setPrefWidth(1078);
             songsList.setPrefHeight(425);
 //            TRBL
-            songsList.setPadding(new Insets(10, 60, 10, 60));
+            songsList.setPadding(new Insets(10, 60, 10, 30));
             songsList.setHgap(20);
             songsList.setVgap(10);
             songsList.setAlignment(Pos.CENTER);
@@ -137,7 +169,7 @@ public class HelloApplication extends Application {
                     public void handle(MouseEvent mouseEvent) {
                         p.playSongWithId(mapFromViewToSongId.get(songPane));
 
-                        updatePlayPause(homeScene,p);
+                        updatePlayPause(homeScene, p);
                     }
                 });
             });
@@ -155,7 +187,6 @@ public class HelloApplication extends Application {
             next.setOnMouseClicked(mouseEvent -> {
                 p.next();
                 updatePlayPause(homeScene, p);
-
 
 
             });
@@ -179,6 +210,12 @@ public class HelloApplication extends Application {
                 updatePlayPause(playListScene, p);
 
 
+            });
+            home.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    setUpStage(homeScene,universalStage,"home");
+                }
             });
 
         } else if (present_scene.equals("search")) {
