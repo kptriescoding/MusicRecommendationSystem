@@ -33,7 +33,7 @@ public class Player {
         String songPath = "src/main/java/RecommedationSystem/song_data.csv";
         String userTablePath = "src/main/java/RecommedationSystem/user_table.csv";
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
-        Table userRecommnedation = recommenderSystem.getRecommendation("");
+        Table userRecommnedation = recommenderSystem.searchBarRecommender("");
         Playlist playlist = new Playlist(userRecommnedation);
         songs = playlist.getSongs();
         mapFromSongToImage = new HashMap<>();
