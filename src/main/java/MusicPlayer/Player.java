@@ -33,6 +33,7 @@ public class Player {
     MediaPlayer mediaPlayer;
     RecommenderSystem recommenderSystem;
     User currentUser;
+    HashMap<String, String> users;
 
     public Player(Stage stage, Scene scene, User user) throws InterruptedException {
         this.stage = stage;
@@ -177,6 +178,14 @@ public class Player {
 
     private void updateUser(User user, String songId) {
         recommenderSystem.updateFrequency(user.getUserId(), songId);
+    }
+
+    public boolean hasUser(String name) {
+        return users.containsKey(name);
+    }
+
+    public boolean matchPassowrd(String name, String password) {
+        return users.containsKey(name) && users.get(name).equals(password);
     }
 }
 

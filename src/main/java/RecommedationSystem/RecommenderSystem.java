@@ -120,9 +120,9 @@ public class RecommenderSystem extends MLTools {
         return reqSongs;
     }
 
-    public ArrayList<String> fetchUsers() {
+    public HashMap<String,String> fetchUsers() {
         //TODO
-        return new ArrayList<>();
+        return new HashMap<>();
     }
 
     public void updateFrequency(String songId, String user) {
