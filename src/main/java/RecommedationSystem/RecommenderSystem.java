@@ -120,6 +120,11 @@ public class RecommenderSystem extends MLTools {
         return reqSongs;
     }
 
+    public ArrayList<String> fetchUsers() {
+        //TODO
+        return new ArrayList<>();
+    }
+
     public void updateFrequency(String songId, String user) {
         int index = -1;
         for (int i = 0; i < dfSongs.rowCount(); i++)

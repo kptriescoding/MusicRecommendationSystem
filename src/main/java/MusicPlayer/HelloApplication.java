@@ -48,7 +48,7 @@ public class HelloApplication extends Application {
     static Stage universalStage;
     static Scene homeScene, playListScene, searchScene, loginScene;
     User currentUser;
-    ArrayList<>
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
