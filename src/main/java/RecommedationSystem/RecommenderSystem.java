@@ -107,18 +107,28 @@ public class RecommenderSystem extends MLTools {
             songArr.add(topSongs.get((Double) itr.next()));
         }
         Table reqSongs = null;
+        HashMap<String,Boolean> smap = new HashMap<>();
         for (int i = 0; i < songArr.size(); i++) {
             String curSong = songArr.get(i);
             Table curSimSong = this.findSimilarSongs(curSong);
-            if (reqSongs == null)
+            if (reqSongs == null) {
                 reqSongs = curSimSong;
+                for (int j = 0; j < curSimSong.rowCount(); j++) {
+                    String songId=curSimSong.row(j).getString(0);
+                    smap.put(songId,true);
+                }
+
+            }
             else
-                for (int j = 0; j < curSimSong.rowCount(); j++)
-                    reqSongs.append(curSimSong.row(j));
-
+                for (int j = 0; j < curSimSong.rowCount(); j++) {
+                    String songId=curSimSong.row(j).getString(0);
+                    if(smap.get(songId)==null) {
+                        reqSongs.append(curSimSong.row(j));
+                        smap.put(songId,true);
+                    }
+                }
         }
-
-        return reqSongs.dropDuplicateRows().first(noOfSearchSongs);
+        return reqSongs.first(noOfSearchSongs);
     }
 
 
