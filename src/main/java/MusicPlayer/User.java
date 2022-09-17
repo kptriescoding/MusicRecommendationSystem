@@ -1,4 +1,4 @@
-package com.example.music_recommendation_system;
+package MusicPlayer;
 
 public class User {
     private int userId;

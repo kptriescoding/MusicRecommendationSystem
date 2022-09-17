@@ -1,4 +1,4 @@
-package com.example.music_recommendation_system;
+package MusicPlayer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

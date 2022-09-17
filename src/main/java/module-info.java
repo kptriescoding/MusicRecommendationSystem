@@ -5,7 +5,7 @@ module com.example.music_recommendation_system {
     requires java.sql;
     requires tablesaw.core;
 
-    opens com.example.music_recommendation_system to javafx.fxml;
-    exports com.example.music_recommendation_system;
+    opens MusicPlayer to javafx.fxml;
+    exports MusicPlayer;
 
 }
