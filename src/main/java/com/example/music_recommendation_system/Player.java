@@ -35,6 +35,7 @@ public class Player {
     public Player(Stage stage,Scene scene) throws InterruptedException {
         this.stage = stage;
         this.scene = scene;
+
         String songPath = "src/main/java/RecommedationSystem/song_data.csv";
         String userTablePath = "src/main/java/RecommedationSystem/user_table.csv";
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
@@ -51,10 +52,9 @@ public class Player {
 
         t.start();
 
-
-
-
-        System.out.println(mapFromSongToImage);
+        File bip = new File(songs.get(currentIndex).getPath());
+        Media hit = new Media(bip.toURI().toString());
+        this.mediaPlayer = new MediaPlayer(hit);
     }
 
 
@@ -111,6 +111,7 @@ public class Player {
             currentMedia = hit;
         }
         this.mediaPlayer.play();
+        System.out.println(this.mediaPlayer.getCurrentTime());
 
         isPlaying = true;
     }
@@ -127,6 +128,7 @@ public class Player {
     }
 
     public void prev() {
+
         this.mediaPlayer.pause();
         if (currentIndex == 0) currentIndex = songs.size() - 1;
         else currentIndex = currentIndex - 1;
@@ -156,6 +158,7 @@ public class Player {
         isPlaying = true;
 
     }
+
 
     public void updateAlbumArt(Scene scene){
         SongData currentSong = songs.get(currentIndex);

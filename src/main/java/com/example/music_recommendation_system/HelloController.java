@@ -38,6 +38,10 @@ public class HelloController {
     }
 
     @FXML
+    protected void onMouseEntered(){
+
+    }
+    @FXML
     protected void onLikeButtonClick(){
 
     }

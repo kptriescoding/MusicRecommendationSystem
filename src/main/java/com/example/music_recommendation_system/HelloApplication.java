@@ -1,7 +1,12 @@
 package com.example.music_recommendation_system;
 
 import RecommedationSystem.SongData;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -12,8 +17,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -24,73 +31,91 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+
 public class HelloApplication extends Application {
+    static class Scheduler extends TimerTask {
+        public void run() {
+
+
+        }
+    }
+
     ImageView play_pause, next, prev;
     Button search;
     static Player p;
     static Stage universalStage;
-    static Scene homeScene, playListScene;
+    static Scene homeScene, playListScene, searchScene;
+    User currentUser;
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
 //        p.fetchSongs("src/main/resources/songs");
+
+
         FXMLLoader homeLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         FXMLLoader playListLoader = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
         FXMLLoader searchLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
         universalStage = stage;
         homeScene = new Scene(homeLoader.load(), 1280, 720);
         playListScene = new Scene(playListLoader.load(), 1280, 720);
-        p = new Player(stage,homeScene);
+        searchScene = new Scene(searchLoader.load(), 1280, 720);
+        p = new Player(stage, homeScene);
         p.addAlbumArts();
 
 
         universalStage.setTitle("Hello!");
         universalStage.setScene(homeScene);
         universalStage.show();
-        setUpStage(homeScene, universalStage, "home");
-        homeScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
-            if(keyEvent.getCode()== KeyCode.SPACE){
-                if (p.isPlaying()) {
-                    p.pause();
-                    updatePlayPause(homeScene, p);
-                } else {
-                    p.play();
-                    updatePlayPause(homeScene, p);
-                }
-            }
-        });
-        playListScene.addEventFilter(KeyEvent.KEY_PRESSED,keyEvent -> {
-            if(keyEvent.getCode()== KeyCode.SPACE){
-                if (p.isPlaying()) {
-                    p.pause();
-                    updatePlayPause(playListScene, p);
-                } else {
-                    p.play();
-                    updatePlayPause(playListScene, p);
-                }
-            }
-        });
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
+            setUpStage(homeScene, universalStage, "home");
+            homeScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+                if (keyEvent.getCode() == KeyCode.SPACE) {
+                    if (p.isPlaying()) {
+                        p.pause();
+                        updatePlayPause(homeScene, p);
+                    } else {
+                        p.play();
+                        updatePlayPause(homeScene, p);
+                    }
+                }
+            });
+            searchScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+                if (keyEvent.getCode() == KeyCode.SPACE) {
+                    if (p.isPlaying()) {
+                        p.pause();
+                        updatePlayPause(searchScene, p);
+                    } else {
+                        p.play();
+                        updatePlayPause(searchScene, p);
+                    }
+                }
+            });
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
     }
 
+
     static FlowPane getSongPane(SongData song) {
         FlowPane pane = new FlowPane();
-        Color col = Color.rgb(42,42,42);
+        Color col = Color.rgb(42, 42, 42);
 
         CornerRadii corn = new CornerRadii(0);
 
-        Background background = new Background(new BackgroundFill(col,corn, Insets.EMPTY));
+        Background background = new Background(new BackgroundFill(col, corn, Insets.EMPTY));
 
         Label l = new Label(song.getSongName());
-        l.setTextFill(Color.rgb(254,255,254));
+        l.setTextFill(Color.rgb(254, 255, 254));
 
         pane.setOrientation(Orientation.HORIZONTAL);
         l.setMaxHeight(Double.MAX_VALUE);
@@ -123,6 +148,31 @@ public class HelloApplication extends Application {
 
     static void setUpStage(Scene scene, Stage stage, String present_scene) {
 
+        if (present_scene.equals("home")) {
+            Button bright = (Button) scene.lookup("#home");
+            Button dull1 = (Button) scene.lookup("#like");
+            Button dull2 = (Button) scene.lookup("#search");
+
+            bright.setTextFill(Color.rgb(255, 255, 255));
+            dull1.setTextFill(Color.rgb(200, 180, 200));
+            dull2.setTextFill(Color.rgb(200, 180, 200));
+        } else if (present_scene.equals("like")) {
+            Button bright = (Button) scene.lookup("#like");
+            Button dull1 = (Button) scene.lookup("#home");
+            Button dull2 = (Button) scene.lookup("#search");
+            bright.setTextFill(Color.rgb(255, 255, 255));
+
+            dull1.setTextFill(Color.rgb(200, 180, 200));
+            dull2.setTextFill(Color.rgb(200, 180, 200));
+        } else {
+            Button bright = (Button) scene.lookup("#search");
+            Button dull1 = (Button) scene.lookup("#like");
+            Button dull2 = (Button) scene.lookup("#home");
+            bright.setTextFill(Color.rgb(255, 255, 255));
+
+            dull1.setTextFill(Color.rgb(200, 180, 200));
+            dull2.setTextFill(Color.rgb(200, 180, 200));
+        }
 
 //        boolean playing = false;
         universalStage = stage;
@@ -131,10 +181,39 @@ public class HelloApplication extends Application {
         if (present_scene.equals("home")) {
             HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
             ImageView play_pause, next, prev;
+            Slider seekbar;
             play_pause = (ImageView) homeScene.lookup("#play_view");
             next = (ImageView) homeScene.lookup("#next_view");
             prev = (ImageView) homeScene.lookup("#prev_view");
+            seekbar = (Slider) homeScene.lookup("#seekbar");
 
+            seekbar.setMax(p.mediaPlayer.getTotalDuration().toSeconds());
+            seekbar.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean wasChanging, Boolean isNowChanging) {
+                    if (!isNowChanging) {
+                        p.mediaPlayer.seek(Duration.seconds(seekbar.getValue()));
+                    }
+                }
+            });
+            seekbar.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (!seekbar.isValueChanging()) {
+                    double currentTime = p.mediaPlayer.getCurrentTime().toSeconds();
+                    if (Math.abs(currentTime - newValue.doubleValue()) > 0.5) {
+                        p.mediaPlayer.seek(Duration.seconds(newValue.doubleValue()));
+                    }
+                }
+            });
+
+            p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+                if (!seekbar.isValueChanging()) {
+                    seekbar.setValue(newTime.toSeconds());
+                    if (seekbar.getValue() == seekbar.getMajorTickUnit()) {
+                        p.next();
+                        updatePlayPause(homeScene, p);
+                    }
+                }
+            });
             GridPane songsList = (GridPane) homeScene.lookup("#songs_grid_pane");
 
             songsList.setPrefWidth(1078);
@@ -200,56 +279,72 @@ public class HelloApplication extends Application {
 
             Button search = (Button) homeScene.lookup("#search");
             Button home = (Button) homeScene.lookup("#home");
-            Button playlist = (Button) homeScene.lookup("#playlist");
+            Button playlist = (Button) homeScene.lookup("#like");
+
+            home.setTextFill(Color.rgb(255, 255, 255));
+            search.setTextFill(Color.rgb(200, 180, 200));
+            playlist.setTextFill(Color.rgb(200, 180, 200));
+
+            search.setOnMouseEntered(mouseEvent -> search.setTextFill(Color.rgb(141, 141, 121)));
+            search.setOnMouseExited(mouseEvent -> search.setTextFill(Color.rgb(200, 180, 200)));
+
             search.setOnMouseClicked(mouseEvent -> {
 
                 universalStage.close();
-                universalStage.setScene(playListScene);
+                universalStage.setScene(searchScene);
                 universalStage.show();
-                setUpStage(playListScene, universalStage, "search");
-                updatePlayPause(playListScene, p);
+                setUpStage(searchScene, universalStage, "search");
+                updatePlayPause(searchScene, p);
 
 
             });
             home.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    setUpStage(homeScene,universalStage,"home");
+                    setUpStage(homeScene, universalStage, "home");
                 }
             });
 
         } else if (present_scene.equals("search")) {
             ImageView play_pause, next, prev;
-            play_pause = (ImageView) playListScene.lookup("#play_view");
-            next = (ImageView) playListScene.lookup("#next_view");
-            prev = (ImageView) playListScene.lookup("#prev_view");
+            play_pause = (ImageView) searchScene.lookup("#play_view");
+            next = (ImageView) searchScene.lookup("#next_view");
+            prev = (ImageView) searchScene.lookup("#prev_view");
 
 
-            updatePlayPause(playListScene, p);
+            updatePlayPause(searchScene, p);
             play_pause.setOnMouseClicked(mouseEvent -> {
                 if (p.isPlaying()) {
                     p.pause();
-                    updatePlayPause(playListScene, p);
+                    updatePlayPause(searchScene, p);
                 } else {
                     p.play();
-                    updatePlayPause(playListScene, p);
+                    updatePlayPause(searchScene, p);
                 }
             });
 
             next.setOnMouseClicked(mouseEvent -> {
                 p.next();
-                updatePlayPause(playListScene, p);
+                updatePlayPause(searchScene, p);
 
             });
             prev.setOnMouseClicked(mouseEvent -> {
                 p.prev();
-                updatePlayPause(playListScene, p);
+                updatePlayPause(searchScene, p);
             });
 
 
-            Button search = (Button) playListScene.lookup("#search");
-            Button home = (Button) playListScene.lookup("#home");
-            Button playlist = (Button) playListScene.lookup("#playlist");
+            Button search = (Button) searchScene.lookup("#search");
+            Button home = (Button) searchScene.lookup("#home");
+            Button playlist = (Button) searchScene.lookup("#playlist");
+
+            search.setTextFill(Color.rgb(255, 255, 255));
+            home.setTextFill(Color.rgb(200, 180, 200));
+//            playlist.setTextFill(Color.rgb(200, 180, 200));
+
+            home.setOnMouseEntered(mouseEvent -> search.setTextFill(Color.rgb(141, 141, 121)));
+            home.setOnMouseExited(mouseEvent -> search.setTextFill(Color.rgb(200, 180, 200)));
+
             home.setOnMouseClicked(mouseEvent -> {
 
                 universalStage.close();
@@ -282,9 +377,6 @@ public class HelloApplication extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch();
-    }
 }
 
 
