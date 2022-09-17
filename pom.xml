@@ -19,6 +19,11 @@
             <name>GroupDocs Artifact Repository</name>
             <url>http://repository.groupdocs.cloud/repo</url>
         </repository>
+<!--        <repository>-->
+<!--            <id>jitpack.io</id>-->
+<!--            <name>some name</name>-->
+<!--            <url>https://jitpack.io</url>-->
+<!--        </repository>-->
     </repositories>
     <dependencies>
         <dependency>
@@ -31,6 +36,11 @@
             <artifactId>tika-parsers</artifactId>
             <version>1.4</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.vincenzopalazzo</groupId>-->
+<!--            <artifactId>JFXToast</artifactId>-->
+<!--            <version>Tag</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>

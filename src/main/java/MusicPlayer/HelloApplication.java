@@ -68,53 +68,78 @@ public class HelloApplication extends Application {
 
 
         p = new Player(stage, homeScene, currentUser);
-        p.addAlbumArts();
+        p.addAlbumArts(homeScene);
 
 
         universalStage.setTitle("DK Music PLayer just...play it");
 
         universalStage.setScene(loginScene);
-        universalStage.show();
+
         TextField username, password;
-        username = (TextField) loginScene.lookup("username");
-        password = (TextField) loginScene.lookup("password");
+        Button submit;
+        username = (TextField) loginScene.lookup("#username");
+        password = (TextField) loginScene.lookup("#password");
+        submit = (Button) loginScene.lookup("#submit");
+        submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (p.hasUser(username.getText())) {
+                    if (p.matchPassowrd(username.getText(), password.getText())) {
+                        universalStage.close();
+                        universalStage.setScene(homeScene);
+                        universalStage.show();
+                        p.currentUser = new User(username.getText(), username.getText(), password.getText());
 
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
+                            setUpStage(homeScene, universalStage, "home");
+                            homeScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+                                if (keyEvent.getCode() == KeyCode.SPACE) {
+                                    if (p.isPlaying()) {
+                                        p.pause();
+                                        updatePlayPause(homeScene, p);
+                                        updateCurrentSongName(homeScene, p);
+                                    } else {
+                                        p.play();
+                                        updatePlayPause(homeScene, p);
+                                        updatePlayPause(homeScene, p);
+                                    }
+                                }
+                            });
+                            searchScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+                                if (keyEvent.getCode() == KeyCode.SPACE) {
+                                    if (p.isPlaying()) {
+                                        p.pause();
+                                        updatePlayPause(searchScene, p);
+                                        updateCurrentSongName(searchScene, p);
+                                    } else {
+                                        p.play();
+                                        updatePlayPause(searchScene, p);
+                                        updateCurrentSongName(searchScene, p);
+                                    }
+                                }
+                            });
+                        }));
+                        timeline.setCycleCount(Animation.INDEFINITE);
+                        timeline.play();
+                    } else {
+                        System.out.println("Wrong Password... TryAgain...");
+                        try {
+                            submit.setText("Wrong Password... TryAgain...");
+                            Thread.sleep(1000);
+                            submit.setText("Login");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-        universalStage.setScene(homeScene);
+                    }
+                } else {
+                    p.addUser(username.getText());
+                }
+
+            }
+        });
         universalStage.show();
 
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
-            setUpStage(homeScene, universalStage, "home");
-            homeScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-                if (keyEvent.getCode() == KeyCode.SPACE) {
-                    if (p.isPlaying()) {
-                        p.pause();
-                        updatePlayPause(homeScene, p);
-                        updateCurrentSongName(homeScene, p);
-                    } else {
-                        p.play();
-                        updatePlayPause(homeScene, p);
-                        updatePlayPause(homeScene, p);
-                    }
-                }
-            });
-            searchScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-                if (keyEvent.getCode() == KeyCode.SPACE) {
-                    if (p.isPlaying()) {
-                        p.pause();
-                        updatePlayPause(searchScene, p);
-                        updateCurrentSongName(searchScene, p);
-                    } else {
-                        p.play();
-                        updatePlayPause(searchScene, p);
-                        updateCurrentSongName(searchScene, p);
-                    }
-                }
-            });
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
     }
 

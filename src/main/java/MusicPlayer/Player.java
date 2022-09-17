@@ -24,7 +24,7 @@ public class Player {
     ArrayList<SongData> songs;
     HashMap<SongData, Image> mapFromSongToImage;
     Stage stage;
-    Scene scene;
+
     private boolean isPlaying;
     Media currentMedia;
     SongData currentSong;
@@ -37,8 +37,13 @@ public class Player {
 
     public Player(Stage stage, Scene scene, User user) throws InterruptedException {
         this.stage = stage;
-        this.scene = scene;
-        this.currentUser = user;
+        this.currentUser = new User("user1","user1","1010");
+
+        users = new HashMap<>();
+        users.put("Dileep", "Dileep@09");
+        users.put("user1", "1010");
+        users.put("user0", "162309");
+
 
         String songPath = "src/main/java/CSVFiles/song_data.csv";
         String userTablePath = "src/main/java/CSVFiles/user_table.csv";
@@ -65,7 +70,7 @@ public class Player {
     }
 
 
-    public void addAlbumArts() {
+    public void addAlbumArts(Scene scene) {
 
         for (SongData song : songs) {
             File file = new File(song.getPath());
@@ -78,7 +83,7 @@ public class Player {
                         mapFromSongToImage.put(song, image);
                         count++;
                         System.out.println(count);
-                        stage.setScene(scene);
+//                        stage.setScene(scene);
                     }
                     ;
 
@@ -186,6 +191,10 @@ public class Player {
 
     public boolean matchPassowrd(String name, String password) {
         return users.containsKey(name) && users.get(name).equals(password);
+    }
+
+    public void addUser(String name) {
+        recommenderSystem.addNewRow(name);
     }
 }
 
