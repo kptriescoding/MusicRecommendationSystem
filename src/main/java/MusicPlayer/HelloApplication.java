@@ -98,7 +98,7 @@ public class HelloApplication extends Application {
                             throw new RuntimeException(e);
                         }
 
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> {
                             setUpStage(homeScene, universalStage, "home");
 //                            homeScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
 //                                if (keyEvent.getCode() == KeyCode.SPACE) {
@@ -446,7 +446,6 @@ public class HelloApplication extends Application {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             p.playSongWithId(p.getActualId(mapFromListViewToSongId.get(songPane)));
-                            System.out.println("Event");
                             updatePlayPause(searchScene, p);
                             updatePlayPause(searchScene, p);
                             updateCurrentSongName(searchScene, p);
