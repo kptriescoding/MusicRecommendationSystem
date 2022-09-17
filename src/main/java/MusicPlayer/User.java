@@ -1,15 +1,15 @@
 package MusicPlayer;
 
 public class User {
-    private int userId;
+    private String userId;
     private String name;
     private String password;
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -29,9 +29,12 @@ public class User {
         this.password = password;
     }
 
-    public User(int userId, String name, String password) {
+    public User(String userId, String name, String password) {
         this.userId = userId;
         this.name = name;
         this.password = password;
+    }
+    public boolean isSame(String name,String password){
+        return name.equals(this.name) && password.equals(this.password);
     }
 }

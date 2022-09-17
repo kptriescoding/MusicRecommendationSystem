@@ -168,10 +168,10 @@ public class RecommenderSystem extends MLTools {
     }
 
     public static void main(String[] args) {
-        String songPath = "src/main/java/RecommedationSystem/CSVFiles/song_data.csv";
-        String userTablePath = "src/main/java/RecommedationSystem/CSVFiles/user_table.csv";
+        String songPath = "src/main/java/CSVFiles/song_data.csv";
+        String userTablePath = "src/main/java/CSVFiles/user_table.csv";
 
-// Search Recommender
+        // Search Recommender
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
         Table searchResults = recommenderSystem.searchBarRecommender("paat");
         System.out.println("Search Results");

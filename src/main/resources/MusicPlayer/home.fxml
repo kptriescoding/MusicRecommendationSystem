@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -30,7 +31,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(#3d3233 , black ); -fx-padding: 0;">
             <children>
                 <AnchorPane layoutX="16.0" layoutY="1030.0" prefHeight="42.0" prefWidth="1696.0" />
-                <ScrollPane layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+                <ScrollPane hbarPolicy="NEVER" layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="NEVER">
                     <GridPane fx:id="songs_grid_pane" layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0" style="-fx-padding: 0;">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100" />
@@ -52,20 +53,28 @@
 
                         <ImageView fx:id="play_view" fitHeight="37.0" fitWidth="57.0" layoutX="508.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/play.png" />
+                                <Image url="@../images/player/play.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="next_view" fitHeight="37.0" fitWidth="57.0" layoutX="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/next.png" />
+                                <Image url="@../images/player/next.png" />
                             </image>
                         </ImageView>
 
                         <ImageView fx:id="prev_view" fitHeight="37.0" fitWidth="57.0" layoutX="415.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/prev.png" />
+                                <Image url="@../images/player/prev.png" />
                             </image>
                         </ImageView>
+                  <Label fx:id="current_song_name" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="23.0" prefHeight="24.0" prefWidth="140.0" text="Song" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Ubuntu" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Label>
 
                     </children>
                 </AnchorPane>

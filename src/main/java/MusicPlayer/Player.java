@@ -31,19 +31,19 @@ public class Player {
     int currentIndex = 0;
     int count = 0;
     MediaPlayer mediaPlayer;
+    RecommenderSystem recommenderSystem;
+    User currentUser;
 
-
-    public Player(Stage stage,Scene scene) throws InterruptedException {
+    public Player(Stage stage, Scene scene, User user) throws InterruptedException {
         this.stage = stage;
         this.scene = scene;
-
+        this.currentUser = user;
 
         String songPath = "src/main/java/CSVFiles/song_data.csv";
         String userTablePath = "src/main/java/CSVFiles/user_table.csv";
 
+        recommenderSystem = new RecommenderSystem(songPath, userTablePath);
 
-
-        RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
         Table userRecommnedation = recommenderSystem.searchBarRecommender("");
         Playlist playlist = new Playlist(userRecommnedation);
         songs = playlist.getSongs();
@@ -60,6 +60,7 @@ public class Player {
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
+        this.currentSong = songs.get(currentIndex);
     }
 
 
@@ -107,7 +108,7 @@ public class Player {
     }
 
     public void play() {
-        if(currentSong==null) {
+        if (currentSong == null) {
             currentSong = songs.get(currentIndex);
             File bip = new File(songs.get(currentIndex).getPath());
             Media hit = new Media(bip.toURI().toString());
@@ -124,6 +125,7 @@ public class Player {
     public void next() {
         if (mediaPlayer != null) this.mediaPlayer.pause();
         currentIndex = (currentIndex + 1) % songs.size();
+        currentSong = songs.get(currentIndex);
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
@@ -137,6 +139,7 @@ public class Player {
         this.mediaPlayer.pause();
         if (currentIndex == 0) currentIndex = songs.size() - 1;
         else currentIndex = currentIndex - 1;
+        currentSong = songs.get(currentIndex);
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
@@ -150,11 +153,12 @@ public class Player {
     }
 
 
-    public void playSongWithId(int id){
-        if(id==currentIndex) return;
-        if(this.mediaPlayer!=null)
+    public void playSongWithId(int id) {
+        if (id == currentIndex) return;
+        if (this.mediaPlayer != null)
             this.mediaPlayer.pause();
         currentIndex = id;
+        currentSong = songs.get(currentIndex);
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
@@ -165,10 +169,14 @@ public class Player {
     }
 
 
-    public void updateAlbumArt(Scene scene){
+    public void updateAlbumArt(Scene scene) {
         SongData currentSong = songs.get(currentIndex);
         ImageView album_art = (ImageView) scene.lookup("#album_art_current_song");
         album_art.setImage(mapFromSongToImage.get(currentSong));
+    }
+
+    private void updateUser(User user, String songId) {
+        recommenderSystem.updateFrequency(user.getUserId(), songId);
     }
 }
 

@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -26,6 +27,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,9 +46,9 @@ public class HelloApplication extends Application {
     Button search;
     static Player p;
     static Stage universalStage;
-    static Scene homeScene, playListScene, searchScene;
+    static Scene homeScene, playListScene, searchScene, loginScene;
     User currentUser;
-
+    ArrayList<>
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
@@ -56,17 +58,31 @@ public class HelloApplication extends Application {
         FXMLLoader homeLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         FXMLLoader playListLoader = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
         FXMLLoader searchLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
+        FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+
         universalStage = stage;
         homeScene = new Scene(homeLoader.load(), 1280, 720);
         playListScene = new Scene(playListLoader.load(), 1280, 720);
         searchScene = new Scene(searchLoader.load(), 1280, 720);
-        p = new Player(stage, homeScene);
+        loginScene = new Scene(loginLoader.load(), 600, 400);
+
+
+        p = new Player(stage, homeScene, currentUser);
         p.addAlbumArts();
 
 
-        universalStage.setTitle("Hello!");
+        universalStage.setTitle("DK Music PLayer just...play it");
+
+        universalStage.setScene(loginScene);
+        universalStage.show();
+        TextField username, password;
+        username = (TextField) loginScene.lookup("username");
+        password = (TextField) loginScene.lookup("password");
+
+
         universalStage.setScene(homeScene);
         universalStage.show();
+
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
             setUpStage(homeScene, universalStage, "home");
@@ -75,8 +91,10 @@ public class HelloApplication extends Application {
                     if (p.isPlaying()) {
                         p.pause();
                         updatePlayPause(homeScene, p);
+                        updateCurrentSongName(homeScene, p);
                     } else {
                         p.play();
+                        updatePlayPause(homeScene, p);
                         updatePlayPause(homeScene, p);
                     }
                 }
@@ -86,9 +104,11 @@ public class HelloApplication extends Application {
                     if (p.isPlaying()) {
                         p.pause();
                         updatePlayPause(searchScene, p);
+                        updateCurrentSongName(searchScene, p);
                     } else {
                         p.play();
                         updatePlayPause(searchScene, p);
+                        updateCurrentSongName(searchScene, p);
                     }
                 }
             });
@@ -139,6 +159,7 @@ public class HelloApplication extends Application {
 
     }
 
+
     static void setUpStage(Scene scene, Stage stage, String present_scene) {
 
         if (present_scene.equals("home")) {
@@ -170,6 +191,7 @@ public class HelloApplication extends Application {
 //        boolean playing = false;
         universalStage = stage;
         updatePlayPause(scene, p);
+        updateCurrentSongName(scene, p);
 
         if (present_scene.equals("home")) {
             HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
@@ -201,9 +223,10 @@ public class HelloApplication extends Application {
             p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
                 if (!seekbar.isValueChanging()) {
                     seekbar.setValue(newTime.toSeconds());
-                    if ((seekbar.getMax()-seekbar.getValue())<0.1) {
+                    if ((seekbar.getMax() - seekbar.getValue()) < 0.1) {
                         p.next();
                         updatePlayPause(homeScene, p);
+                        updateCurrentSongName(homeScene, p);
                     }
                 }
             });
@@ -242,30 +265,35 @@ public class HelloApplication extends Application {
                         p.playSongWithId(mapFromViewToSongId.get(songPane));
 
                         updatePlayPause(homeScene, p);
+                        updatePlayPause(homeScene, p);
+                        updateCurrentSongName(homeScene, p);
                     }
                 });
             });
             updatePlayPause(homeScene, p);
+            updateCurrentSongName(homeScene, p);
             play_pause.setOnMouseClicked(mouseEvent -> {
                 if (p.isPlaying()) {
                     p.pause();
                     updatePlayPause(homeScene, p);
+                    updateCurrentSongName(homeScene, p);
                 } else {
                     p.play();
                     updatePlayPause(homeScene, p);
+                    updateCurrentSongName(homeScene, p);
                 }
             });
 
             next.setOnMouseClicked(mouseEvent -> {
                 p.next();
                 updatePlayPause(homeScene, p);
-
+                updateCurrentSongName(homeScene, p);
 
             });
             prev.setOnMouseClicked(mouseEvent -> {
                 p.prev();
                 updatePlayPause(homeScene, p);
-
+                updateCurrentSongName(homeScene, p);
 
             });
 
@@ -288,7 +316,7 @@ public class HelloApplication extends Application {
                 universalStage.show();
                 setUpStage(searchScene, universalStage, "search");
                 updatePlayPause(searchScene, p);
-
+                updateCurrentSongName(searchScene, p);
 
             });
             home.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -306,24 +334,31 @@ public class HelloApplication extends Application {
 
 
             updatePlayPause(searchScene, p);
+            updateCurrentSongName(searchScene, p);
             play_pause.setOnMouseClicked(mouseEvent -> {
                 if (p.isPlaying()) {
                     p.pause();
-                    updatePlayPause(searchScene, p);
+
                 } else {
                     p.play();
-                    updatePlayPause(searchScene, p);
+
                 }
+                updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
             });
 
             next.setOnMouseClicked(mouseEvent -> {
                 p.next();
                 updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
+
 
             });
             prev.setOnMouseClicked(mouseEvent -> {
                 p.prev();
                 updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
+
             });
 
 
@@ -345,6 +380,7 @@ public class HelloApplication extends Application {
                 universalStage.show();
                 setUpStage(homeScene, universalStage, "home");
                 updatePlayPause(homeScene, p);
+                updateCurrentSongName(searchScene, p);
 
 
             });
@@ -352,7 +388,7 @@ public class HelloApplication extends Application {
     }
 
     static void updatePlayPause(Scene scene, Player p) {
-        System.out.println(scene.toString());
+
         ImageView play_pause = (ImageView) scene.lookup("#play_view");
 
         File playImageFile = new File("src/main/resources/images/player/play.png");
@@ -367,6 +403,12 @@ public class HelloApplication extends Application {
             play_pause.setImage(playImage);
         }
         p.updateAlbumArt(scene);
+    }
+
+    static void updateCurrentSongName(Scene scene, Player p) {
+        Label currentSong = (Label) scene.lookup("#current_song_name");
+        currentSong.setText(p.currentSong.getSongName());
+
     }
 
 

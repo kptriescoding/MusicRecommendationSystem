@@ -64,18 +64,18 @@
 
                         <ImageView fx:id="play_view" fitHeight="42.0" fitWidth="57.0" layoutX="508.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/play.png" />
+                                <Image url="@../images/player/play.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="next_view" fitHeight="42.0" fitWidth="57.0" layoutX="600.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/next.png" />
+                                <Image url="@../images/player/next.png" />
                             </image>
                         </ImageView>
 
                         <ImageView fx:id="prev_view" fitHeight="42.0" fitWidth="57.0" layoutX="415.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/player/prev.png" />
+                                <Image url="@../images/player/prev.png" />
                             </image>
                         </ImageView>
 
