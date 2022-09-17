@@ -15,15 +15,15 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
-      <TextField layoutX="215.0" layoutY="159.0" promptText="User Name" fx:id="username">
+      <TextField fx:id="username" layoutX="215.0" layoutY="159.0" prefHeight="26.0" prefWidth="163.0" promptText="User Name">
          <padding>
             <Insets bottom="5.0" left="5.0" right="3.0" top="5.0" />
          </padding></TextField>
-      <TextField layoutX="215.0" layoutY="200.0" promptText="Password" fx:id="password">
+      <TextField fx:id="password" layoutX="215.0" layoutY="200.0" promptText="Password">
          <padding>
             <Insets bottom="5.0" left="5.0" right="3.0" top="5.0" />
          </padding></TextField>
-      <Button layoutX="269.0" layoutY="262.0" mnemonicParsing="false" style="-fx-background-color: #c3c3c3;" text="LOGIN" fx:id="submit">
+      <Button fx:id="submit" layoutX="269.0" layoutY="262.0" mnemonicParsing="false" style="-fx-background-color: #c3c3c3;" text="LOGIN">
          <padding>
             <Insets bottom="7.0" left="14.0" right="14.0" top="7.0" />
          </padding>

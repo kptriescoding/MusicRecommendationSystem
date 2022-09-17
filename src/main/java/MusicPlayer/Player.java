@@ -55,13 +55,7 @@ public class Player {
         songs = playlist.getSongs();
         mapFromSongToImage = new HashMap<>();
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
 
-        t.start();
 
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
