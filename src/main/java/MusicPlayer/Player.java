@@ -88,18 +88,9 @@ public class Player {
 
     }
 
-    public void fetchSongs(String p) {
-
-//        File f = new File(p);
-//        File[] l = f.listFiles();
-//        for (File x : l) {
-//            if (x == null) return;
-//            if (x.isHidden() || !x.canRead()) continue;
-//            if (x.isDirectory()) fetchSongs(x.getPath());
-//            else if (x.getName().endsWith(".mp3"))
-//                songs.add(x.getPath());
-//        }
-
+    public ArrayList<SongData> getUserRecommendedSongs(User user){
+        Table t = this.recommenderSystem.getRecommendation(user.getName());
+        return new Playlist(t).getSongs();
     }
 
     public void pause() {
