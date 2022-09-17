@@ -37,9 +37,9 @@ public class RecommenderSystem extends MLTools {
         encoded_column = IntColumn.create("Album", encoded_output);
         dfSongsData.addColumns(encoded_column);
         this.dfUser = Table.read().csv(userTablePath);
-        this.noOfSongs = 5;
+        this.noOfSongs = 10;
         this.noOfUsers = 20;
-        this.noOfSimilarSongs = 3;
+        this.noOfSimilarSongs = 5;
         this.noOfSearchSongs = 15;
     }
 
@@ -117,13 +117,9 @@ public class RecommenderSystem extends MLTools {
                     reqSongs.append(curSimSong.row(j));
 
         }
-        return reqSongs;
+        return reqSongs.dropDuplicateRows().first(noOfSearchSongs);
     }
 
-    public HashMap<String,String> fetchUsers() {
-        //TODO
-        return new HashMap<>();
-    }
 
     public void updateFrequency(String songId, String user) {
         int index = -1;
@@ -139,7 +135,7 @@ public class RecommenderSystem extends MLTools {
         dfSongs.replaceColumn("TotalFrequency", tfCol);
         dfSongs.write().csv(songPath);
         for (int i = 0; i < dfUser.rowCount(); i++)
-            if (Objects.equals(dfUser.stringColumn("UserId").get(i), songId)) {
+            if (Objects.equals(dfUser.stringColumn("UserId").get(i), user)) {
                 index = i;
                 break;
             }

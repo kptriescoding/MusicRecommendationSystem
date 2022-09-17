@@ -90,7 +90,13 @@ public class HelloApplication extends Application {
                         universalStage.close();
                         universalStage.setScene(homeScene);
                         universalStage.show();
-                        p.currentUser = new User(username.getText(), username.getText(), password.getText());
+                        currentUser = new User(username.getText(), username.getText(), password.getText());
+                        try {
+                            p=new Player(stage, homeScene, currentUser);
+                            p.addAlbumArts(homeScene);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
 
                         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), ev -> {
                             setUpStage(homeScene, universalStage, "home");
@@ -135,8 +141,6 @@ public class HelloApplication extends Application {
                         }
 
                     }
-                } else {
-                    p.addUser(username.getText());
                 }
 
             }
