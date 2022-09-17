@@ -1,60 +1,62 @@
-SongId,SongName,Artist,Language,Album,Composer,Release Date,Path
-song1,Kunnidu Kunnidu Baare - PagalWorld.NL,"Udit Narayan, Sunidhi Chauhan, Stefen",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Kunnidu Kunnidu Baare.mp3
-song2,Ninadene Januma - PagalWorld.NL,Nakul Abhyankar,Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ninadene Januma.mp3
-song3,Sanchariyagu Nee - PagalWorld.NL,"Vijay Prakash, Rakshita Suresh, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Sanchariyagu Nee.mp3
-song4,Paatashaala - MyMp3Bhojpuri.In,Vijay Prakash | MyMp3Bhojpuri.In,Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Paatashaala.mp3
-song5,Kannau Hodiyaka - MyMp3Bhojpuri.In,Shreya Ghoshal | MyMp3Bhojpuri.In,Kannada,Robert (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Kannau Hodiyaka.mp3
-song6,Ivanu Geleyanalla - PagalWorld.NL,Shreya Ghoshal,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ivanu Geleyanalla.mp3
-song7,Oorigobba Raaja - MyMp3Bhojpuri.In,"Puneeth Rajkumar, Ramya Behara | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Oorigobba Raaja.mp3
-song8,Mungaru Maleye - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Mungaru Maleye.mp3
-song9,Sahapaati - 777 Charlie - PagalWorld.NL,Aarna Shetty,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Sahapaati - 777-Charlie.mp3
-song10,Neenaade Naa - MyMp3Bhojpuri.In,"Armaan Malik, Shreya Ghoshal | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Neenaade Naa.mp3
-song11,Torture Song - 777 Charlie - PagalWorld.NL,Vijay Prakash,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Torture Song - 777 Charlie.mp3
-song12,Ee Prema - PagalWorld.NL,"Ramya Bhat Abhyankar, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ee Prema.mp3
-song13,Onde Ondu Saari - PagalWorld.NL,"Kunal Ganjawala, Priya Hemesh",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Onde Ondu Saari.mp3
-song14,Kesariya Rangu - PagalWorld.NL,"Sanjith Hegde, Sid Sriram",Kannada,Brahmastra (2022) Kannada | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Kesariya Rangu.mp3
-song15,Anisuthide - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Anisuthide.mp3
-song16,Kesariya Rangu – PagalWorld.NL,"Arijit Singh,",Hindi,Brahmastra - 2022,PagalWorld.NL,,src/main/resources/songs/Kesariya.mp3
-song17,Meri Zindagi Hai Tu ,"Jubin Nautiyal, Neeti Mohan",Hindi,Bollywood Movie Song 2021,PagalWorld.NL,,src/main/resources/songs/Meri Zindagi Hai Tu.mp3
-song18,Barish Aayi Hai_64(PagalWorld.com.se),"Stebin Ben, Shreya Ghoshal,",Hindi, New Hindi Songs 2022,PagalWorld.NL,,src/main/resources/songs/Barish Aayi Hai.mp3
-song19,Pyaar Karte Ho Na_64(PagalWorld.com.se),"Stebin Ben, Shreya Ghoshal,",Hindi, New Hindi Songs 2021,PagalWorld.NL,,src/main/resources/songs/Pyaar Karte Ho Na.mp3
-song20,Ra Ra Rakkamma_64(PagalWorld.com.se),"Nakash Aziz, Sunidhi Chauhan,",Hindi, Vikrant Rona (2022),PagalWorld.NL,,src/main/resources/songs/Ra Ra Rakkamma.mp3
-song21,Tumse Bhi Zyada_64(PagalWorld.com.se)," Arijit Singh,",Hindi, Bollywood Movie Song 2021,PagalWorld.NL,,src/main/resources/songs/Tumse Bhi Zyada.mp3
-song22,Tu-Chale(PaglaSongs)," Arijit Singh, Shreya Ghoshal",Hindi,Bollywood Top Songs (2020),PaglaSongs,,src/main/resources/songs/Tu-Chale.mp3
-song23,Kabhi-Kabhi-Aditi-Zindagi(PaglaSongs),Rashid Ali,Hindi, Bollywood Top Songs (2020), A.R. Rahman,,src/main/resources/songs/Kabhi-Kabhi-Aditi-Zindagi(PaglaSongs).mp3
-song24,Teri-Galliyan(PaglaSongs), Ankit Tiwari,Hindi, Bollywood Top Songs (2020), Ankit Tiwari,,src/main/resources/songs/Teri-Galliyan(PaglaSongs).mp3
-song25,Chale Aana , Armaan Malik,Hindi, Bollywood Top Songs (2020), Armaan Malik,,src/main/resources/songs/Chale-Aana.mp3
-song26,Teri Yaad, Himesh Reshammiya,Hindi, Bollywood Top Songs (2020), Himesh Reshammiya,,src/main/resources/songs/Teri-Yaad(PaglaSongs).mp3
-song27,Baaton-Ko-Teri(PaglaSongs), Arijit Singh,Hindi, Bollywood Top Songs (2020), Himesh Reshammiya,,src/main/resources/songs/Baaton-Ko-Teri(PaglaSongs).mp3
-song28,O Priya O Priya," Kamal Khan, Kumar Sanu, Alka Yagnik & Nitin Mukesh",Hindi, Bollywood Top Songs (2020), Himesh Reshammiya,,src/main/resources/songs/O-Priya-O-Priya(PaglaSongs).mp3
-song29,Baatein Ye Kabhi Na Tu Bhulna, Palak Muchhal,Hindi, Bollywood Top Songs (2020), Jeet Ganguly,,src/main/resources/songs/Baatein-Ye-Kabhi-Na-Tu-Bhulna(PaglaSongs).mp3
-song30,Mere Rashke Qamar,"Nusrat Fateh Ali Khan, Rahat Fateh Ali Khan",Hindi, Bollywood Top Songs (2020), DJ Ansh,,src/main/resources/songs/Mere-Rashke-Qamar(PaglaSongs).mp3
-song31,Aye Pulla (Indie)," Kiran Surath, Anthony Dassan",Tamil,Aye Pulla (Indie),Lavarathan,,src/main/resources/songs/Aye-Pulla-MassTamilan.dev (1).mp3
-song32,Eyy Beta Idhu En Patta,"Nakash Aziz, Sunidhi Chauhan,",Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Eyy Beta Idhu En Patta-Masstamilan.In.mp3
-song33,Odu Odu Aadu, Benny Dayal,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Odu Odu Aadu-Masstamilan.In.mp3
-song34,Oo Solriya Oo Oo Solriya, Andrea Jeremiah,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Oo Solriya Oo Oo Solriya-Masstamilan.In.mp3
-song35,Saami Saami,Rajalakshmi Senthiganesh,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Saami Saami-Masstamilan.In.mp3
-song36,Srivalli,Sid Sriram,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Srivalli-Masstamilan.In.mp3
-song37, Pudhidhaai,"Darbuka Siva, Jonita Gandhi",Tamil,Mudhal Nee Mudivum Nee,TamilMp3Free,,src/main/resources/songs/Pudhidhaai.mp3
-song38,Raasaadhi Raasan," Ron Ethan Yohann, Vandana",Tamil,Ron Ethan Yohann,Gnanakaravel,,src/main/resources/songs/Raasaadhi-Raasan-MassTamilan.dev.mp3
-song39, Dosti,Vedala Hemachandra,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Dosti-MassTamilan.so.mp3
-song40, Etthara Jenda,"Vishal Mishra, Prudhvi Chandra, M. M. Keeravani, Sahithi Chaganti, Harika Narayan",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Dosti-MassTamilan.so.mp3
-song41,Janani, M. M. Keeravani,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Janani-MassTamilan.so.mp3
-song42,Komma Uyyala, Prakruthi Reddy,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Komma-Uyyala-MassTamilan.so.mp3
-song43, Komuram Bheemudo,Kaala Bhairava,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Komuram-Bheemudo-MassTamilan.so.mp3
-song44,Naatu Naatu,"Rahul Sipligunj, Kaala Bhairava",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Naatu-Naatu-MassTamilan.so.mp3
-song45,Raamam Raaghavam,"Vijay Prakash, Chandana Bala Kalyan, Charu Hariharan",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry
-",,src/main/resources/songs/Raamam-Raaghavam-MassTamilan.so.mp3
-song46,Devachim Rochnam,Rons Tavarez,Konkani,Lenoy Gomendez,Patson Barbosa,,src/main/resources/songs/DEVACHIM ROCHNAM.mp3
-song47,Chandi Kori ,Mattuda Ponnu,Tulu,Mattuda Ponnu,Mattuda Ponnu,,src/main/resources/songs/Chandi Kori Mattuda Ponnu.mp3
-song48,Haldi Song, Aa Lele ,Tulu,Raj Sounds And Lights,Rahul Vineeth Srajan Kumar,,src/main/resources/songs/Haldi Song Aa Lele .mp3
-song49,Roar," Katy Perry,",English," Katy Perry,"," Katy Perry,",,src/main/resources/songs/Roar---Katy-Perry(pagolworld.nl).mp3
-song50,"
-Shape of You - Albums Songs",Ed Sheeran,English,Ed Sheeran,Ed Sheeran,,src/main/resources/songs/Shape of You – (Mr-Jatt.com).mp3
-song51,World’s Smallest Violin,AJR,English,World\’s Smallest Violin,World\’s Smallest Violin,,src/main/resources/songs/AJR-World-s-Smallest-Violin.mp3
+SongId,SongName,Artist,Language,Album,Composer,Release Date,Path,TotalFrequency
+song25,Chale Aana,Armaan Malik,Hindi,Bollywood Top Songs (2020),Armaan Malik,,src/main/resources/songs/Chale-Aana.mp3,1067
+song13,Onde Ondu Saari - PagalWorld.NL,"Kunal Ganjawala, Priya Hemesh",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Onde Ondu Saari.mp3,1065
+song35,Saami Saami,Rajalakshmi Senthiganesh,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Saami Saami-Masstamilan.In.mp3,1064
+song5,Kannau Hodiyaka - MyMp3Bhojpuri.In,Shreya Ghoshal | MyMp3Bhojpuri.In,Kannada,Robert (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Kannau Hodiyaka.mp3,1057
+song41,Janani,M. M. Keeravani,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Janani-MassTamilan.so.mp3,1054
+song11,Torture Song - 777 Charlie - PagalWorld.NL,Vijay Prakash,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Torture Song - 777 Charlie.mp3,1048
+song23,Kabhi-Kabhi-Aditi-Zindagi(PaglaSongs),Rashid Ali,Hindi,Bollywood Top Songs (2020),A.R. Rahman,,src/main/resources/songs/Kabhi-Kabhi-Aditi-Zindagi(PaglaSongs).mp3,1046
+song33,Odu Odu Aadu,Benny Dayal,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Odu Odu Aadu-Masstamilan.In.mp3,1043
+song48,Haldi Song,Aa Lele,Tulu,Raj Sounds And Lights,Rahul Vineeth Srajan Kumar,,"src/main/resources/songs/onlymp3.to - Haldi Song Aa Lele - Lyrical Video  Raj Sounds And Lights - Tulu Movie Rahul,Vineeth, Srajan Kumar-hQCCVlak7EA-192k-1659997508135.mp3",1041
+song18,Barish Aayi Hai_64(PagalWorld.com.se),"Stebin Ben, Shreya Ghoshal,",Hindi,New Hindi Songs 2022,PagalWorld.NL,,src/main/resources/songs/Barish Aayi Hai.mp3,1037
+song2,Ninadene Januma - PagalWorld.NL,Nakul Abhyankar,Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ninadene Januma.mp3,1036
+song38,Raasaadhi Raasan,"Ron Ethan Yohann, Vandana",Tamil,Ron Ethan Yohann,Gnanakaravel,,src/main/resources/songs/Raasaadhi-Raasan-MassTamilan.dev.mp3,1029
+song29,Baatein Ye Kabhi Na Tu Bhulna,Palak Muchhal,Hindi,Bollywood Top Songs (2020),Jeet Ganguly,,src/main/resources/songs/Baatein-Ye-Kabhi-Na-Tu-Bhulna(PaglaSongs).mp3,1022
+song6,Ivanu Geleyanalla - PagalWorld.NL,Shreya Ghoshal,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ivanu Geleyanalla.mp3,1021
+song52,Oh Sita Hey Rama,"SPB Charan, Ramya Behara",Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Oh Sita Hey Rama.mp3,1015
+song59,Yevarini Adaganu,Sai Vignesh,Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Yevarini Adaganu.mp3,1013
+song53,Inthandham,"SPB Charan, Ramya Behara",Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Inthandham.mp3,1011
+song55,Oh Prema,"Kapil Kapilan, Chinmayi Sripada",Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Oh Prema.mp3,1009
+song42,Komma Uyyala,Prakruthi Reddy,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Komma-Uyyala-MassTamilan.so.mp3,1008
+song14,Kesariya Rangu - PagalWorld.NL,"Sanjith Hegde, Sid Sriram",Kannada,Brahmastra (2022) Kannada | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Kesariya Rangu.mp3,1007
+song19,Pyaar Karte Ho Na_64(PagalWorld.com.se),"Stebin Ben, Shreya Ghoshal,",Hindi,New Hindi Songs 2021,PagalWorld.NL,,src/main/resources/songs/Pyaar Karte Ho Na.mp3,1003
+song15,Anisuthide - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Anisuthide.mp3,1001
+song54,Kaanunna Kalyanam,"Anurag Kulkarni, Sinduri S",Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Kaanunna Kalyanam.mp3,996
+song26,Teri Yaad,Himesh Reshammiya,Hindi,Bollywood Top Songs (2020),Himesh Reshammiya,,src/main/resources/songs/Teri-Yaad(PaglaSongs).mp3,995
+song46,Devachim Rochnam,Rons Tavarez,Konkani,Lenoy Gomendez,Patson Barbosa,,src/main/resources/songs/onlymp3.to - DEVACHIM ROCHNAM  Song by RONS TAVARES  New Konkani Song 2022  Goan Konkani Songs-Yq8-Rb4ucQ0-192k-1659997334640.mp3,992
+song37,Pudhidhaai,"Darbuka Siva, Jonita Gandhi",Tamil,Mudhal Nee Mudivum Nee,TamilMp3Free,,src/main/resources/songs/Pudhidhaai.mp3,992
+song57,Tharali Tharali,Yasin Nizar,Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Tharali Tharali.mp3,989
+song51,World’s Smallest Violin,AJR,English,World\’s Smallest Violin,World\’s Smallest Violin,,src/main/resources/songs/AJR-World-s-Smallest-Violin.mp3,989
+song45,Raamam Raaghavam,"Vijay Prakash, Chandana Bala Kalyan, Charu Hariharan",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Raamam-Raaghavam-MassTamilan.so.mp3,990
+song31,Aye Pulla (Indie),"Kiran Surath, Anthony Dassan",Tamil,Aye Pulla (Indie),Lavarathan,,src/main/resources/songs/Aye-Pulla-MassTamilan.dev (1).mp3,989
+song4,Paatashaala - MyMp3Bhojpuri.In,Vijay Prakash | MyMp3Bhojpuri.In,Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Paatashaala.mp3,987
+song36,Srivalli,Sid Sriram,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Srivalli-Masstamilan.In.mp3,985
+song58,Nene Aa Nene,Sunitha,Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Nene Aa Nene.mp3,984
+song43,Komuram Bheemudo,Kaala Bhairava,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Komuram-Bheemudo-MassTamilan.so.mp3,985
+song30,Mere Rashke Qamar,"Nusrat Fateh Ali Khan, Rahat Fateh Ali Khan",Hindi,Bollywood Top Songs (2020),DJ Ansh,,src/main/resources/songs/Mere-Rashke-Qamar(PaglaSongs).mp3,983
+song60,Ninnati Theepi,Sunitha,Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Ninnati Theepi.mp3,981
+song22,Tu-Chale(PaglaSongs),"Arijit Singh, Shreya Ghoshal",Hindi,Bollywood Top Songs (2020),PaglaSongs,,src/main/resources/songs/Tu-Chale.mp3,979
+song9,Sahapaati - 777 Charlie - PagalWorld.NL,Aarna Shetty,Kannada,777 Charlie (2022) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Sahapaati - 777-Charlie.mp3,979
+song40,Etthara Jenda,"Vishal Mishra, Prudhvi Chandra, M. M. Keeravani, Sahithi Chaganti, Harika Narayan",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Dosti-MassTamilan.so.mp3,973
+song12,Ee Prema - PagalWorld.NL,"Ramya Bhat Abhyankar, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Ee Prema.mp3,971
+song17,Meri Zindagi Hai Tu,"Jubin Nautiyal, Neeti Mohan",Hindi,Bollywood Movie Song 2021,PagalWorld.NL,,src/main/resources/songs/Meri Zindagi Hai Tu.mp3,970
+song20,Ra Ra Rakkamma_64(PagalWorld.com.se),"Nakash Aziz, Sunidhi Chauhan,",Hindi,Vikrant Rona (2022),PagalWorld.NL,,src/main/resources/songs/Ra Ra Rakkamma.mp3,969
+song56,Eppudo Ninnu,"SPB Charan, Ramya Behara",Telugu,Sita Ramam (2022),SenSongMp3,,src/main/resources/songs/Eppudo Ninnu.mp3,967
+song32,Eyy Beta Idhu En Patta,"Nakash Aziz, Sunidhi Chauhan,",Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Eyy Beta Idhu En Patta-Masstamilan.In.mp3,964
+song39,Dosti,Vedala Hemachandra,Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Dosti-MassTamilan.so.mp3,963
+song34,Oo Solriya Oo Oo Solriya,Andrea Jeremiah,Tamil,Devi Sri Prasad,MastMillan,,src/main/resources/songs/Oo Solriya Oo Oo Solriya-Masstamilan.In.mp3,963
+song7,Oorigobba Raaja - MyMp3Bhojpuri.In,"Puneeth Rajkumar, Ramya Behara | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Oorigobba Raaja.mp3,957
+song24,Teri-Galliyan(PaglaSongs),Ankit Tiwari,Hindi,Bollywood Top Songs (2020),Ankit Tiwari,,src/main/resources/songs/Teri-Galliyan(PaglaSongs).mp3,956
+song16,Kesariya Rangu – PagalWorld.NL,"Arijit Singh,",Hindi,Brahmastra - 2022,PagalWorld.NL,,src/main/resources/songs/Kesariya.mp3,947
+song50,Shape of You - Albums Songs,Ed Sheeran,English,Ed Sheeran,Ed Sheeran,,src/main/resources/songs/Shape of You – (Mr-Jatt.com).mp3,945
+song44,Naatu Naatu,"Rahul Sipligunj, Kaala Bhairava",Tamil,Maragathamani,"Sirivennela Seetharama Sastry, Chandrabose, M. M. Keeravaani, Suddala Ashok Teja, K. Shiva Dutta, Ramajogayya Sastry",,src/main/resources/songs/Naatu-Naatu-MassTamilan.so.mp3,942
+song27,Baaton-Ko-Teri(PaglaSongs),Arijit Singh,Hindi,Bollywood Top Songs (2020),Himesh Reshammiya,,src/main/resources/songs/Baaton-Ko-Teri(PaglaSongs).mp3,942
+song47,Chandi Kori,Mattuda Ponnu,Tulu,Mattuda Ponnu,Mattuda Ponnu,,src/main/resources/songs/Chandi Kori Mattuda Ponnu.mp3,940
+song8,Mungaru Maleye - PagalWorld.NL,Sonu Nigam,Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Mungaru Maleye.mp3,935
+song49,Roar,"Katy Perry,",English,"Katy Perry,","Katy Perry,",,src/main/resources/songs/Roar---Katy-Perry(pagolworld.nl).mp3,932
+song28,O Priya O Priya,"Kamal Khan, Kumar Sanu, Alka Yagnik & Nitin Mukesh",Hindi,Bollywood Top Songs (2020),Himesh Reshammiya,,src/main/resources/songs/O-Priya-O-Priya(PaglaSongs).mp3,920
+song61,DS,Dileep,No Idea,Sharma Songs,Sharma Films,,src/main/resources/songs/DS.mp3,920
+song1,Kunnidu Kunnidu Baare - PagalWorld.NL,"Udit Narayan, Sunidhi Chauhan, Stefen",Kannada,Mungaru Male (2006) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Kunnidu Kunnidu Baare.mp3,918
+song3,Sanchariyagu Nee - PagalWorld.NL,"Vijay Prakash, Rakshita Suresh, Nakul Abhyankar",Kannada,Love Mocktail 2 (2021) | PagalWorld.NL,PagalWorld.NL,,src/main/resources/songs/Sanchariyagu Nee.mp3,891
+song10,Neenaade Naa - MyMp3Bhojpuri.In,"Armaan Malik, Shreya Ghoshal | MyMp3Bhojpuri.In",Kannada,Yuvarathnaa (2021) | MyMp3Bhojpuri.In,MyMp3Bhojpuri.In,,src/main/resources/songs/Neenaade Naa.mp3,883
+song21,Tumse Bhi Zyada_64(PagalWorld.com.se),"Arijit Singh,",Hindi,Bollywood Movie Song 2021,PagalWorld.NL,,src/main/resources/songs/Tumse Bhi Zyada.mp3,872

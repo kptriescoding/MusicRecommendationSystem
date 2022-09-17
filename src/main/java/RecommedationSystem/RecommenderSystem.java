@@ -117,6 +117,7 @@ public class RecommenderSystem extends MLTools {
                     reqSongs.append(curSimSong.row(j));
 
         }
+
         return reqSongs.dropDuplicateRows().first(noOfSearchSongs);
     }
 
