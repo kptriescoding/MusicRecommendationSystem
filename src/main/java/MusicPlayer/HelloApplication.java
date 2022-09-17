@@ -414,6 +414,40 @@ public class HelloApplication extends Application {
 
             });
 
+            Slider seekbar;
+            play_pause = (ImageView) searchScene.lookup("#play_view");
+            next = (ImageView) searchScene.lookup("#next_view");
+            prev = (ImageView) searchScene.lookup("#prev_view");
+            seekbar = (Slider) searchScene.lookup("#seekbar");
+
+            seekbar.setMax(p.mediaPlayer.getTotalDuration().toSeconds());
+            seekbar.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean wasChanging, Boolean isNowChanging) {
+                    if (!isNowChanging) {
+                        p.mediaPlayer.seek(Duration.seconds(seekbar.getValue()));
+                    }
+                }
+            });
+            seekbar.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (!seekbar.isValueChanging()) {
+                    double currentTime = p.mediaPlayer.getCurrentTime().toSeconds();
+                    if (Math.abs(currentTime - newValue.doubleValue()) > 0.5) {
+                        p.mediaPlayer.seek(Duration.seconds(newValue.doubleValue()));
+                    }
+                }
+            });
+
+            p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+                if (!seekbar.isValueChanging()) {
+                    seekbar.setValue(newTime.toSeconds());
+                    if ((seekbar.getMax() - seekbar.getValue()) < 0.1) {
+                        p.next();
+                        updatePlayPause(searchScene, p);
+                        updateCurrentSongName(searchScene, p);
+                    }
+                }
+            });
 
             TextField searchBar = (TextField) searchScene.lookup("#search_bar");
             Button searchButton = (Button) searchScene.lookup("#search_button");
@@ -442,12 +476,21 @@ public class HelloApplication extends Application {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             p.playSongWithId(p.getActualId(mapFromListViewToSongId.get(songPane)));
+                            seekbar.valueProperty().addListener((obs, oldValue, newValue) -> {
+                                if (!seekbar.isValueChanging()) {
+                                    double currentTime = p.mediaPlayer.getCurrentTime().toSeconds();
+                                    if (Math.abs(currentTime - newValue.doubleValue()) > 0.5) {
+                                        p.mediaPlayer.seek(Duration.seconds(newValue.doubleValue()));
+                                    }
+                                }
+                            });
                             updatePlayPause(searchScene, p);
                             updatePlayPause(searchScene, p);
                             updateCurrentSongName(searchScene, p);
                         }
                     });
                 });
+
             });
 
 
