@@ -32,12 +32,17 @@ public class Player {
     int count = 0;
     MediaPlayer mediaPlayer;
 
+
     public Player(Stage stage,Scene scene) throws InterruptedException {
         this.stage = stage;
         this.scene = scene;
 
-        String songPath = "src/main/java/RecommedationSystem/song_data.csv";
-        String userTablePath = "src/main/java/RecommedationSystem/user_table.csv";
+
+        String songPath = "src/main/java/CSVFiles/song_data.csv";
+        String userTablePath = "src/main/java/CSVFiles/user_table.csv";
+
+
+
         RecommenderSystem recommenderSystem = new RecommenderSystem(songPath, userTablePath);
         Table userRecommnedation = recommenderSystem.searchBarRecommender("");
         Playlist playlist = new Playlist(userRecommnedation);

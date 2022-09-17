@@ -208,7 +208,7 @@ public class HelloApplication extends Application {
             p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
                 if (!seekbar.isValueChanging()) {
                     seekbar.setValue(newTime.toSeconds());
-                    if (seekbar.getValue() == seekbar.getMajorTickUnit()) {
+                    if ((seekbar.getMax()-seekbar.getValue())<0.1) {
                         p.next();
                         updatePlayPause(homeScene, p);
                     }
