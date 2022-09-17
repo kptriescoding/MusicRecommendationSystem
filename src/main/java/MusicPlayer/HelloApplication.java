@@ -422,42 +422,36 @@ public class HelloApplication extends Application {
             listView.setVgap(5);
             listView.setAlignment(Pos.CENTER);
 
+            HashMap<FlowPane, String> mapFromListViewToSongId = new HashMap<>();
 
-            searchButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    ArrayList<SongData> lis = new Playlist(p.recommenderSystem.searchBarRecommender(searchBar.getText())).getSongs();
-                    for (int i = 0; i < lis.size(); i++) {
+            searchButton.setOnMouseClicked(mouseEvent -> {
+                ArrayList<SongData> lis = new Playlist(p.recommenderSystem.searchBarRecommender(searchBar.getText())).getSongs();
+                listView.getChildren().clear();
+                listView.getRowConstraints().clear();
+                for (int i = 0; i < lis.size(); i++) {
 
-//                        songsList.setVgap(10);
-//            songsList.setAlignment(Pos.CENTER);
-//            int cols = 2, colCnt = 0, rowCnt = 0;
-//            for (int i = 0; i < p.songs.size(); i++) {
-//
-////                songsList.add(new ImageView(p.mapFromSongToImage.get(p.songs.get(i))), colCnt, rowCnt);
-//                if (colCnt == 0) {
-//                    RowConstraints c = new RowConstraints();
-//                    c.setPrefHeight(300);
-//                    songsList.getRowConstraints().add(c);
-//                }
-//                FlowPane pane = getSongPane(p.songs.get(i));
-//                songsList.add(pane, colCnt, rowCnt);
-//                mapFromViewToSongId.put(pane, i);
-//                colCnt++;
-//                if (colCnt > cols) {
-//                    rowCnt++;
-//                    colCnt = 0;
-//
-//                }
-//            }
-                        RowConstraints c = new RowConstraints();
-                        c.setPrefHeight(50);
-                        listView.getRowConstraints().add(c);
-                        listView.add(getSongPaneForListView(lis.get(i), i + 1), 0, i);
-                    }
-                    System.out.println(lis.size());
+                    FlowPane current = getSongPaneForListView(lis.get(i),i+1);
+                    RowConstraints c = new RowConstraints();
+                    c.setPrefHeight(50);
+                    listView.getRowConstraints().add(c);
+                    mapFromListViewToSongId.put(current,lis.get(i).getSongId());
+                    listView.add(current,0,i);
                 }
+                listView.getChildren().forEach(songPane -> {
+                    songPane.setOnMouseClicked(new EventHandler<>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            p.playSongWithId(p.getActualId(mapFromListViewToSongId.get(songPane)));
+                            System.out.println("Event");
+                            updatePlayPause(searchScene, p);
+                            updatePlayPause(searchScene, p);
+                            updateCurrentSongName(searchScene, p);
+                        }
+                    });
+                });
             });
+
+
 
 
         }

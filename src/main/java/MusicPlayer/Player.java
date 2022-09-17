@@ -169,6 +169,15 @@ public class Player {
     }
 
 
+
+
+    public int getActualId(String id){
+        for(int i = 0;i< songs.size();i++){
+            if((songs.get(i).getSongId()).equals(id)) return i;
+        }
+        System.out.println("Not Found");
+        return -1;
+    }
     public void updateAlbumArt(Scene scene) {
         SongData currentSong = songs.get(currentIndex);
         ImageView album_art = (ImageView) scene.lookup("#album_art_current_song");
