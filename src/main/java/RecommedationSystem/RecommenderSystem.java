@@ -37,9 +37,9 @@ public class RecommenderSystem extends MLTools {
         encoded_column = IntColumn.create("Album", encoded_output);
         dfSongsData.addColumns(encoded_column);
         this.dfUser = Table.read().csv(userTablePath);
-        this.noOfSongs = 5;
+        this.noOfSongs = 10;
         this.noOfUsers = 20;
-        this.noOfSimilarSongs = 3;
+        this.noOfSimilarSongs = 5;
         this.noOfSearchSongs = 15;
     }
 
@@ -107,23 +107,30 @@ public class RecommenderSystem extends MLTools {
             songArr.add(topSongs.get((Double) itr.next()));
         }
         Table reqSongs = null;
+        HashMap<String,Boolean> smap = new HashMap<>();
         for (int i = 0; i < songArr.size(); i++) {
             String curSong = songArr.get(i);
             Table curSimSong = this.findSimilarSongs(curSong);
-            if (reqSongs == null)
+            if (reqSongs == null) {
                 reqSongs = curSimSong;
+                for (int j = 0; j < curSimSong.rowCount(); j++) {
+                    String songId=curSimSong.row(j).getString(0);
+                    smap.put(songId,true);
+                }
+
+            }
             else
-                for (int j = 0; j < curSimSong.rowCount(); j++)
-                    reqSongs.append(curSimSong.row(j));
-
+                for (int j = 0; j < curSimSong.rowCount(); j++) {
+                    String songId=curSimSong.row(j).getString(0);
+                    if(smap.get(songId)==null) {
+                        reqSongs.append(curSimSong.row(j));
+                        smap.put(songId,true);
+                    }
+                }
         }
-        return reqSongs;
+        return reqSongs.first(noOfSearchSongs);
     }
 
-    public HashMap<String,String> fetchUsers() {
-        //TODO
-        return new HashMap<>();
-    }
 
     public void updateFrequency(String songId, String user) {
         int index = -1;
@@ -139,7 +146,7 @@ public class RecommenderSystem extends MLTools {
         dfSongs.replaceColumn("TotalFrequency", tfCol);
         dfSongs.write().csv(songPath);
         for (int i = 0; i < dfUser.rowCount(); i++)
-            if (Objects.equals(dfUser.stringColumn("UserId").get(i), songId)) {
+            if (Objects.equals(dfUser.stringColumn("UserId").get(i), user)) {
                 index = i;
                 break;
             }

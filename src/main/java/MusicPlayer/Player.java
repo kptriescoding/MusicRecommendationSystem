@@ -37,10 +37,12 @@ public class Player {
 
     public Player(Stage stage, Scene scene, User user) throws InterruptedException {
         this.stage = stage;
-        this.currentUser = new User("user1","user1","1010");
+        if(user==null)this.currentUser = new User("kptries","Karthik Pai","password");
+        else currentUser=user;
 
         users = new HashMap<>();
         users.put("Dileep", "Dileep@09");
+        users.put("kptries","password");
         users.put("user1", "1010");
         users.put("user0", "162309");
 
@@ -50,7 +52,7 @@ public class Player {
 
         recommenderSystem = new RecommenderSystem(songPath, userTablePath);
 
-        Table userRecommnedation = recommenderSystem.searchBarRecommender("");
+        Table userRecommnedation = recommenderSystem.getRecommendation(currentUser.getUserId());
         Playlist playlist = new Playlist(userRecommnedation);
         songs = playlist.getSongs();
         mapFromSongToImage = new HashMap<>();
@@ -76,7 +78,7 @@ public class Player {
                         Image image = (Image) change.getValueAdded();
                         mapFromSongToImage.put(song, image);
                         count++;
-                        System.out.println(count);
+//                        System.out.println(count);
 //                        stage.setScene(scene);
                     }
                     ;
@@ -108,8 +110,9 @@ public class Player {
             currentMedia = hit;
         }
         this.mediaPlayer.play();
-        System.out.println(this.mediaPlayer.getCurrentTime());
-
+//        System.out.println(this.mediaPlayer.getCurrentTime());
+        System.out.println(songs.get(currentIndex).getSongId());
+        updateUser(songs.get(currentIndex).getSongId());
         isPlaying = true;
     }
 
@@ -117,6 +120,7 @@ public class Player {
         if (mediaPlayer != null) this.mediaPlayer.pause();
         currentIndex = (currentIndex + 1) % songs.size();
         currentSong = songs.get(currentIndex);
+        updateUser(songs.get(currentIndex).getSongId());
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
@@ -131,6 +135,7 @@ public class Player {
         if (currentIndex == 0) currentIndex = songs.size() - 1;
         else currentIndex = currentIndex - 1;
         currentSong = songs.get(currentIndex);
+        updateUser(songs.get(currentIndex).getSongId());
         File bip = new File(songs.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
@@ -156,6 +161,7 @@ public class Player {
         this.mediaPlayer.play();
         currentMedia = hit;
         isPlaying = true;
+        updateUser(songs.get(currentIndex).getSongId());
 
     }
 
@@ -175,8 +181,8 @@ public class Player {
         album_art.setImage(mapFromSongToImage.get(currentSong));
     }
 
-    private void updateUser(User user, String songId) {
-        recommenderSystem.updateFrequency(user.getUserId(), songId);
+    private void updateUser(String songId) {
+        recommenderSystem.updateFrequency(songId, currentUser.getUserId());
     }
 
     public boolean hasUser(String name) {
@@ -185,10 +191,6 @@ public class Player {
 
     public boolean matchPassowrd(String name, String password) {
         return users.containsKey(name) && users.get(name).equals(password);
-    }
-
-    public void addUser(String name) {
-        recommenderSystem.addNewRow(name);
     }
 }
 
