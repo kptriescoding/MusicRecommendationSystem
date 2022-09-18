@@ -76,4 +76,23 @@ public class SongData {
     public void setSongId(String songId) {
         this.songId = songId;
     }
+
+
+    public int hashCode()
+    {
+
+        int hashcode = 0;
+        return hashcode;
+    }
+
+    public boolean equals(Object obj) {
+
+        if (obj instanceof SongData) {
+            SongData song = (SongData) obj;
+            return (this.getSongId().equals(((SongData) obj).getSongId()));
+        } else {
+            return false;
+
+        }
+    }
 }

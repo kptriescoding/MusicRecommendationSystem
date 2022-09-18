@@ -86,6 +86,10 @@ public class RecommenderSystem extends MLTools {
         dfUser.write().csv(userTablePath);
     }
 
+    public Table getAllSongs(){
+        return dfSongs;
+    }
+
     public Table getRecommendation(String user) {
         Table userTable = dfUser.where(dfUser.stringColumn("UserId").isEqualTo(user));
         if (userTable.rowCount() == 0) {
@@ -176,7 +180,7 @@ public class RecommenderSystem extends MLTools {
         searchFilter = searchColumn.containsString(search);
         recommendedSongs.append(dfSongs.where(searchFilter));
         recommendedSongs.append(dfSongs);
-        return recommendedSongs.dropDuplicateRows().first(noOfSearchSongs);
+        return recommendedSongs.dropDuplicateRows().first(40);
     }
 
     public static void main(String[] args) {

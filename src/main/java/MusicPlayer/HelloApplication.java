@@ -92,7 +92,7 @@ public class HelloApplication extends Application {
                         universalStage.show();
                         currentUser = new User(username.getText(), username.getText(), password.getText());
                         try {
-                            p=new Player(stage, homeScene, currentUser);
+                            p = new Player(stage, homeScene, currentUser);
                             p.addAlbumArts(homeScene);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
@@ -256,7 +256,7 @@ public class HelloApplication extends Application {
             p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
                 if (!seekbar.isValueChanging()) {
                     seekbar.setValue(newTime.toSeconds());
-                    if ((seekbar.getMax() - seekbar.getValue()) < 0.1) {
+                    if ((seekbar.getMax() - seekbar.getValue()) < 4.1) {
                         p.next();
                         updatePlayPause(homeScene, p);
                         updateCurrentSongName(homeScene, p);
@@ -273,6 +273,7 @@ public class HelloApplication extends Application {
             songsList.setVgap(10);
             songsList.setAlignment(Pos.CENTER);
             int cols = 2, colCnt = 0, rowCnt = 0;
+            System.out.println(p.songs.size());
             for (int i = 0; i < p.songs.size(); i++) {
 
 //                songsList.add(new ImageView(p.mapFromSongToImage.get(p.songs.get(i))), colCnt, rowCnt);
@@ -463,22 +464,24 @@ public class HelloApplication extends Application {
             HashMap<FlowPane, String> mapFromListViewToSongId = new HashMap<>();
 
             searchButton.setOnMouseClicked(mouseEvent -> {
-                ArrayList<SongData> lis = new Playlist(p.recommenderSystem.searchBarRecommender(searchBar.getText())).getSongs();
+                ArrayList<SongData> lis = (new Playlist(p.recommenderSystem.searchBarRecommender(searchBar.getText()))).getSongs();
                 listView.getChildren().clear();
                 listView.getRowConstraints().clear();
                 for (int i = 0; i < lis.size(); i++) {
 
-                    FlowPane current = getSongPaneForListView(lis.get(i),i+1);
+                    FlowPane current = getSongPaneForListView(lis.get(i), i + 1);
                     RowConstraints c = new RowConstraints();
-                    c.setPrefHeight(50);
+                    c.setPrefHeight(100);
                     listView.getRowConstraints().add(c);
-                    mapFromListViewToSongId.put(current,lis.get(i).getSongId());
-                    listView.add(current,0,i);
+                    mapFromListViewToSongId.put(current, lis.get(i).getSongId());
+                    listView.add(current, 0, i);
+
                 }
                 listView.getChildren().forEach(songPane -> {
                     songPane.setOnMouseClicked(new EventHandler<>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
+
                             p.playSongWithId(p.getActualId(mapFromListViewToSongId.get(songPane)));
                             seekbar.valueProperty().addListener((obs, oldValue, newValue) -> {
                                 if (!seekbar.isValueChanging()) {
@@ -498,51 +501,89 @@ public class HelloApplication extends Application {
             });
 
 
-
-
         }
     }
 
-    static FlowPane getSongPaneForListView(SongData songData, int no) {
+    static FlowPane getSongPaneForListView(SongData song, int no) {
 
         Label serialno, songname, songduration;
         ImageView songImage;
         FlowPane flowPane = new FlowPane();
-        flowPane.setOrientation(Orientation.HORIZONTAL);
+
 //TRBL
 
-        songImage = new ImageView(p.mapFromSongToImage.get(songData));
-        songImage.setFitHeight(25);
+//
+//        Label l = new Label(song.getSongName());
+//        l.setTextFill(Color.rgb(254, 255, 254));
+//
+//        pane.setOrientation(Orientation.HORIZONTAL);
+//        l.setMaxHeight(Double.MAX_VALUE);
+//        Label cnt = new Label(song.getSongId());
+//        cnt.setMaxHeight(Double.MAX_VALUE);
+//        ImageView album = new ImageView(p.mapFromSongToImage.get(song));
+//        album.setPreserveRatio(true);
+//        album.setX(pane.getLayoutX());
+//        l.setPrefWidth(150);
+//        album.prefHeight(80);
+//        pane.setRowValignment(VPos.BOTTOM);
+//        //            TRBL
+//        album.setFitHeight(80);
+//        l.setPadding(new Insets(5, 5, 5, 5));
+//        pane.setPadding(new Insets(15, 10, 15, 5));
+//        l.setAlignment(Pos.BASELINE_RIGHT);
+
+        songImage = new ImageView(p.mapFromSongToImage.get(song));
+        if(p.mapFromSongToImage.get(song)==null) {
+            songImage.setImage(new Image((new File("src/main/resources/images/search/headphone.jpeg")).toURI().toString()));
+        }
+        songImage.setFitHeight(45);
+        songImage.setFitWidth(45);
         songImage.setPreserveRatio(true);
-        songImage.setFitWidth(25);
         serialno = new Label(String.valueOf(no) + ".");
-        serialno.setPrefHeight(40);
+//        serialno.setPrefHeight(40);
 //        serialno.setFont(Font.loadFont("ubuntu", 13));
         serialno.setTextFill(Color.rgb(255, 255, 255));
         serialno.setPadding(new Insets(5, 10, 5, 10));
-        serialno.setPrefWidth(30);
+        serialno.setPrefWidth(50);
 
-        songname = new Label(songData.getSongName());
-        songname.setPrefHeight(40);
+        songname = new Label(song.getSongName());
+//        songname.setPrefHeight(40);
 //        songname.setFont(Font.loadFont("ubuntu", 13));
         songname.setTextFill(Color.rgb(255, 255, 255));
         songname.setPadding(new Insets(5, 10, 5, 10));
-        songname.setAlignment(Pos.CENTER);
+        songname.setAlignment(Pos.TOP_CENTER);
         songname.setPrefWidth(450);
 
-        File bip = new File(songData.getPath());
+        File bip = new File(song.getPath());
         Media hit = new Media(bip.toURI().toString());
-        songduration = new Label(String.valueOf(hit.getDuration().toSeconds()));
-        songduration.setPrefHeight(40);
+        MediaPlayer m = new MediaPlayer(hit);
+
+        songduration = new Label(String.valueOf(m.getTotalDuration().toSeconds()));
+//        songduration.setPrefHeight(40);
 //        songduration.setFont(Font.loadFont("ubuntu", 13));
         songduration.setTextFill(Color.rgb(255, 255, 255));
         songduration.setPadding(new Insets(5, 10, 5, 10));
         songduration.setPrefWidth(50);
 
+        songImage.setX(flowPane.getLayoutX());
+
         flowPane.setPadding(new Insets(1, 4, 1, 1));
         flowPane.setPrefWidth(600);
+//        flowPane.setPrefHeight(80);
         flowPane.setBackground(Background.EMPTY);
-        flowPane.getChildren().addAll(serialno, songImage, songname, songduration);
+        flowPane.setRowValignment(VPos.CENTER);
+        flowPane.setAlignment(Pos.CENTER);
+        flowPane.getChildren().addAll(songImage);
+        flowPane.getChildren().add(songname);
+        flowPane.getChildren().addAll(songduration);
+//        flowPane.setBorder(Border.stroke(Color.rgb(255, 255, 255)));
+        songImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("Image Clicked");
+            }
+        });
+        flowPane.setOrientation(Orientation.VERTICAL);
         return flowPane;
     }
 

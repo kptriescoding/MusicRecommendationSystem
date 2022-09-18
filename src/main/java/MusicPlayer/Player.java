@@ -52,7 +52,7 @@ public class Player {
 
         recommenderSystem = new RecommenderSystem(songPath, userTablePath);
 
-        Table userRecommnedation = recommenderSystem.getRecommendation(currentUser.getUserId());
+        Table userRecommnedation = recommenderSystem.getAllSongs();
         Playlist playlist = new Playlist(userRecommnedation);
         songs = playlist.getSongs();
         mapFromSongToImage = new HashMap<>();
@@ -70,6 +70,7 @@ public class Player {
 
         for (SongData song : songs) {
             File file = new File(song.getPath());
+            if(!file.isFile()) continue;
             Media media = new Media(file.toURI().toString());
 
             media.getMetadata().addListener((MapChangeListener<String, Object>) change -> {
