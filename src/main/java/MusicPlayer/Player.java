@@ -63,10 +63,10 @@ public class Player {
         allSongsReccomended = new ArrayList<>(songs);
 
         reccomendedSongs = new Playlist(recommenderSystem.getRecommendation(currentUser.getUserId())).getSongs();
-        File bip = new File(songs.get(currentIndex).getPath());
+        File bip = new File(allSongsReccomended.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
-        this.currentSong = songs.get(currentIndex);
+        this.currentSong = allSongsReccomended.get(currentIndex);
     }
 
 
@@ -109,27 +109,27 @@ public class Player {
 
     public void play() {
         if (currentSong == null) {
-            currentSong = songs.get(currentIndex);
-            File bip = new File(songs.get(currentIndex).getPath());
+            currentSong = allSongsReccomended.get(currentIndex);
+            File bip = new File(allSongsReccomended.get(currentIndex).getPath());
             Media hit = new Media(bip.toURI().toString());
 
             this.mediaPlayer = new MediaPlayer(hit);
-            updateUser(songs.get(currentIndex).getSongId());
+            updateUser(allSongsReccomended.get(currentIndex).getSongId());
             currentMedia = hit;
         }
         this.mediaPlayer.play();
 //        System.out.println(this.mediaPlayer.getCurrentTime());
-        System.out.println(songs.get(currentIndex).getSongId());
-        updateUser(songs.get(currentIndex).getSongId());
+        System.out.println(allSongsReccomended.get(currentIndex).getSongId());
+        updateUser(allSongsReccomended.get(currentIndex).getSongId());
         isPlaying = true;
     }
 
     public void next() {
         if (mediaPlayer != null) this.mediaPlayer.pause();
-        currentIndex = (currentIndex + 1) % songs.size();
-        currentSong = songs.get(currentIndex);
-        updateUser(songs.get(currentIndex).getSongId());
-        File bip = new File(songs.get(currentIndex).getPath());
+        currentIndex = (currentIndex + 1) % allSongsReccomended.size();
+        currentSong = allSongsReccomended.get(currentIndex);
+        updateUser(allSongsReccomended.get(currentIndex).getSongId());
+        File bip = new File(allSongsReccomended.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
@@ -140,11 +140,11 @@ public class Player {
     public void prev() {
 
         this.mediaPlayer.pause();
-        if (currentIndex == 0) currentIndex = songs.size() - 1;
+        if (currentIndex == 0) currentIndex = allSongsReccomended.size() - 1;
         else currentIndex = currentIndex - 1;
         currentSong = songs.get(currentIndex);
-        updateUser(songs.get(currentIndex).getSongId());
-        File bip = new File(songs.get(currentIndex).getPath());
+        updateUser(allSongsReccomended.get(currentIndex).getSongId());
+        File bip = new File(allSongsReccomended.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
@@ -162,29 +162,29 @@ public class Player {
         if (this.mediaPlayer != null)
             this.mediaPlayer.pause();
         currentIndex = id;
-        currentSong = songs.get(currentIndex);
-        File bip = new File(songs.get(currentIndex).getPath());
+        currentSong = allSongsReccomended.get(currentIndex);
+        File bip = new File(allSongsReccomended.get(currentIndex).getPath());
         Media hit = new Media(bip.toURI().toString());
         this.mediaPlayer = new MediaPlayer(hit);
         this.mediaPlayer.play();
         currentMedia = hit;
         isPlaying = true;
-        updateUser(songs.get(currentIndex).getSongId());
+        updateUser(allSongsReccomended.get(currentIndex).getSongId());
 
     }
 
 
 
     public int getActualId(String id) {
-        for (int i = 0; i < songs.size(); i++) {
-            if ((songs.get(i).getSongId()).equals(id)) return i;
+        for (int i = 0; i < allSongsReccomended.size(); i++) {
+            if ((allSongsReccomended.get(i).getSongId()).equals(id)) return i;
         }
         System.out.println("Not Found");
         return -1;
     }
 
     public void updateAlbumArt(Scene scene) {
-        SongData currentSong = songs.get(currentIndex);
+        SongData currentSong = allSongsReccomended.get(currentIndex);
         ImageView album_art = (ImageView) scene.lookup("#album_art_current_song");
         album_art.setImage(mapFromSongToImage.get(currentSong));
     }
