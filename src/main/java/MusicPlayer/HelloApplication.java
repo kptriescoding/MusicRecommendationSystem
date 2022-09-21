@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -82,9 +83,8 @@ public class HelloApplication extends Application {
         username = (TextField) loginScene.lookup("#username");
         password = (TextField) loginScene.lookup("#password");
         submit = (Button) loginScene.lookup("#submit");
-        submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        submit.setOnKeyPressed(keyEvent -> {
+            if(keyEvent.getCode().equals(KeyCode.ENTER)){
                 if (p.hasUser(username.getText())) {
                     if (p.matchPassowrd(username.getText(), password.getText())) {
                         universalStage.close();
@@ -98,34 +98,9 @@ public class HelloApplication extends Application {
                             throw new RuntimeException(e);
                         }
 
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> {
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2.5), ev -> {
                             setUpStage(homeScene, universalStage, "home");
-//                            homeScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-//                                if (keyEvent.getCode() == KeyCode.SPACE) {
-//                                    if (p.isPlaying()) {
-//                                        p.pause();
-//                                        updatePlayPause(homeScene, p);
-//                                        updateCurrentSongName(homeScene, p);
-//                                    } else {
-//                                        p.play();
-//                                        updatePlayPause(homeScene, p);
-//                                        updatePlayPause(homeScene, p);
-//                                    }
-//                                }
-//                            });
-//                            searchScene.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-//                                if (keyEvent.getCode() == KeyCode.SPACE) {
-//                                    if (p.isPlaying()) {
-//                                        p.pause();
-//                                        updatePlayPause(searchScene, p);
-//                                        updateCurrentSongName(searchScene, p);
-//                                    } else {
-//                                        p.play();
-//                                        updatePlayPause(searchScene, p);
-//                                        updateCurrentSongName(searchScene, p);
-//                                    }
-//                                }
-//                            });
+
                         }));
                         timeline.setCycleCount(Animation.INDEFINITE);
                         timeline.play();
@@ -142,8 +117,42 @@ public class HelloApplication extends Application {
 
                     }
                 }
-
             }
+        });
+        submit.setOnMouseClicked(mouseEvent -> {
+            if (p.hasUser(username.getText())) {
+                if (p.matchPassowrd(username.getText(), password.getText())) {
+                    universalStage.close();
+                    universalStage.setScene(homeScene);
+                    universalStage.show();
+                    currentUser = new User(username.getText(), username.getText(), password.getText());
+                    try {
+                        p = new Player(stage, homeScene, currentUser);
+                        p.addAlbumArts(homeScene);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2.5), ev -> {
+                        setUpStage(homeScene, universalStage, "home");
+
+                    }));
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.play();
+
+                } else {
+                    System.out.println("Wrong Password... TryAgain...");
+                    try {
+                        submit.setText("Wrong Password... TryAgain...");
+                        Thread.sleep(1000);
+                        submit.setText("Login");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
         });
         universalStage.show();
 
@@ -195,6 +204,8 @@ public class HelloApplication extends Application {
     static void setUpStage(Scene scene, Stage stage, String present_scene) {
 
         if (present_scene.equals("home")) {
+
+            p.updtePlayList("home");
             Button bright = (Button) scene.lookup("#home");
             Button dull1 = (Button) scene.lookup("#like");
             Button dull2 = (Button) scene.lookup("#search");
@@ -227,7 +238,7 @@ public class HelloApplication extends Application {
             updatePlayPause(homeScene, p);
             updateCurrentSongName(homeScene, p);
 
-            HashMap<FlowPane, Integer> mapFromViewToSongId = new HashMap<>();
+
             ImageView play_pause, next, prev;
             Slider seekbar;
             play_pause = (ImageView) homeScene.lookup("#play_view");
@@ -263,6 +274,10 @@ public class HelloApplication extends Application {
                     }
                 }
             });
+
+
+
+            HashMap<FlowPane, String> mapFromViewToSongId = new HashMap<>();
             GridPane songsList = (GridPane) homeScene.lookup("#songs_grid_pane");
 
             songsList.setPrefWidth(1078);
@@ -284,7 +299,7 @@ public class HelloApplication extends Application {
                 }
                 FlowPane pane = getSongPane(p.songs.get(i));
                 songsList.add(pane, colCnt, rowCnt);
-                mapFromViewToSongId.put(pane, i);
+                mapFromViewToSongId.put(pane,p.songs.get(i).getSongId());
                 colCnt++;
                 if (colCnt > cols) {
                     rowCnt++;
@@ -296,11 +311,11 @@ public class HelloApplication extends Application {
                 songPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        p.playSongWithId(mapFromViewToSongId.get(songPane));
-
-                        updatePlayPause(homeScene, p);
-                        updatePlayPause(homeScene, p);
+                        p.playSongWithId(p.getActualId(mapFromViewToSongId.get(songPane)));
                         updateCurrentSongName(homeScene, p);
+                        updatePlayPause(homeScene, p);
+
+
                     }
                 });
             });
@@ -361,6 +376,7 @@ public class HelloApplication extends Application {
             });
 
         } else if (present_scene.equals("search")) {
+            p.updtePlayList("search");
             ImageView play_pause, next, prev;
             play_pause = (ImageView) searchScene.lookup("#play_view");
             next = (ImageView) searchScene.lookup("#next_view");
@@ -425,6 +441,34 @@ public class HelloApplication extends Application {
             prev = (ImageView) searchScene.lookup("#prev_view");
             seekbar = (Slider) searchScene.lookup("#seekbar");
 
+
+            play_pause.setOnMouseClicked(mouseEvent -> {
+                if (p.isPlaying()) {
+                    p.pause();
+
+                } else {
+                    p.play();
+
+                }
+                updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
+            });
+
+            next.setOnMouseClicked(mouseEvent -> {
+                p.next();
+                updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
+
+
+            });
+            prev.setOnMouseClicked(mouseEvent -> {
+                p.prev();
+                updatePlayPause(searchScene, p);
+                updateCurrentSongName(searchScene, p);
+
+            });
+
+
             seekbar.setMax(p.mediaPlayer.getTotalDuration().toSeconds());
             seekbar.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
@@ -443,11 +487,58 @@ public class HelloApplication extends Application {
                 }
             });
 
+
+            HashMap<FlowPane, String> mapFromViewToSongId = new HashMap<>();
+            GridPane songsList = (GridPane) searchScene.lookup("#grid_pane_search_scene");
+
+            songsList.setPrefWidth(1078);
+            songsList.setPrefHeight(425);
+//            TRBL
+            songsList.setPadding(new Insets(10, 60, 10, 30));
+            songsList.setHgap(20);
+            songsList.setVgap(10);
+            songsList.setAlignment(Pos.CENTER);
+            int cols = 2, colCnt = 0, rowCnt = 0;
+            System.out.println(p.songs.size());
+            for (int i = 0; i < p.songs.size(); i++) {
+
+//                songsList.add(new ImageView(p.mapFromSongToImage.get(p.songs.get(i))), colCnt, rowCnt);
+                if (colCnt == 0) {
+                    RowConstraints c = new RowConstraints();
+                    c.setPrefHeight(300);
+                    songsList.getRowConstraints().add(c);
+                }
+                FlowPane pane = getSongPane(p.songs.get(i));
+                songsList.add(pane, colCnt, rowCnt);
+                mapFromViewToSongId.put(pane,p.songs.get(i).getSongId());
+                colCnt++;
+                if (colCnt > cols) {
+                    rowCnt++;
+                    colCnt = 0;
+
+                }
+            }
+            songsList.getChildren().forEach(songPane -> {
+                songPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                       p.playSongWithId(p.getActualId(mapFromViewToSongId.get(songPane)));
+
+                        updatePlayPause(searchScene, p);
+                        updateCurrentSongName(searchScene, p);
+                    }
+                });
+            });
+
+
             p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
                 if (!seekbar.isValueChanging()) {
                     seekbar.setValue(newTime.toSeconds());
-                    if ((seekbar.getMax() - seekbar.getValue()) < 0.1) {
+                    if ((seekbar.getMax()==seekbar.getValue())) {
                         p.next();
+                        try{
+                        Thread.sleep(100);}catch (Exception ignored){}
+//                        seekbar.
                         updatePlayPause(searchScene, p);
                         updateCurrentSongName(searchScene, p);
                     }
@@ -467,6 +558,7 @@ public class HelloApplication extends Application {
                 ArrayList<SongData> lis = (new Playlist(p.recommenderSystem.searchBarRecommender(searchBar.getText()))).getSongs();
                 listView.getChildren().clear();
                 listView.getRowConstraints().clear();
+//                seekbar.valueProperty().removeListener();
                 for (int i = 0; i < lis.size(); i++) {
 
                     FlowPane current = getSongPaneForListView(lis.get(i), i + 1);
