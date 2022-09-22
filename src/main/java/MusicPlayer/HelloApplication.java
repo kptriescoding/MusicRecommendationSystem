@@ -207,27 +207,15 @@ public class HelloApplication extends Application {
 
             p.updtePlayList("home");
             Button bright = (Button) scene.lookup("#home");
-            Button dull1 = (Button) scene.lookup("#like");
             Button dull2 = (Button) scene.lookup("#search");
 
             bright.setTextFill(Color.rgb(255, 255, 255));
-            dull1.setTextFill(Color.rgb(200, 180, 200));
             dull2.setTextFill(Color.rgb(200, 180, 200));
-        } else if (present_scene.equals("like")) {
-            Button bright = (Button) scene.lookup("#like");
-            Button dull1 = (Button) scene.lookup("#home");
-            Button dull2 = (Button) scene.lookup("#search");
-            bright.setTextFill(Color.rgb(255, 255, 255));
-
-            dull1.setTextFill(Color.rgb(200, 180, 200));
-            dull2.setTextFill(Color.rgb(200, 180, 200));
-        } else {
+        }  else {
             Button bright = (Button) scene.lookup("#search");
-            Button dull1 = (Button) scene.lookup("#like");
             Button dull2 = (Button) scene.lookup("#home");
             bright.setTextFill(Color.rgb(255, 255, 255));
 
-            dull1.setTextFill(Color.rgb(200, 180, 200));
             dull2.setTextFill(Color.rgb(200, 180, 200));
         }
 
@@ -348,11 +336,9 @@ public class HelloApplication extends Application {
 
             Button search = (Button) homeScene.lookup("#search");
             Button home = (Button) homeScene.lookup("#home");
-            Button playlist = (Button) homeScene.lookup("#like");
 
             home.setTextFill(Color.rgb(255, 255, 255));
             search.setTextFill(Color.rgb(200, 180, 200));
-            playlist.setTextFill(Color.rgb(200, 180, 200));
 
             search.setOnMouseEntered(mouseEvent -> search.setTextFill(Color.rgb(141, 141, 121)));
             search.setOnMouseExited(mouseEvent -> search.setTextFill(Color.rgb(200, 180, 200)));
