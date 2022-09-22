@@ -84,7 +84,7 @@ public class HelloApplication extends Application {
         password = (TextField) loginScene.lookup("#password");
         submit = (Button) loginScene.lookup("#submit");
         submit.setOnKeyPressed(keyEvent -> {
-            if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 if (p.hasUser(username.getText())) {
                     if (p.matchPassowrd(username.getText(), password.getText())) {
                         universalStage.close();
@@ -102,7 +102,7 @@ public class HelloApplication extends Application {
                             setUpStage(homeScene, universalStage, "home");
 
                         }));
-                        timeline.setCycleCount(Animation.INDEFINITE);
+                        timeline.setCycleCount(1);
                         timeline.play();
 
                     } else {
@@ -137,7 +137,7 @@ public class HelloApplication extends Application {
                         setUpStage(homeScene, universalStage, "home");
 
                     }));
-                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.setCycleCount(1);
                     timeline.play();
 
                 } else {
@@ -204,7 +204,6 @@ public class HelloApplication extends Application {
     static void setUpStage(Scene scene, Stage stage, String present_scene) {
 
         if (present_scene.equals("home")) {
-            p.reccomendedSongs= new Playlist(p.recommenderSystem.getRecommendation(p.currentUser.getUserId())).getSongs();
 
             p.updtePlayList("home");
             Button bright = (Button) scene.lookup("#home");
@@ -238,8 +237,8 @@ public class HelloApplication extends Application {
         if (present_scene.equals("home")) {
             updatePlayPause(homeScene, p);
             updateCurrentSongName(homeScene, p);
-
-
+            p.reccomendedSongs = new Playlist(p.recommenderSystem.getRecommendation(p.currentUser.getUserId())).getSongs();
+            System.out.println("casg");
             ImageView play_pause, next, prev;
             Slider seekbar;
             play_pause = (ImageView) homeScene.lookup("#play_view");
@@ -277,7 +276,6 @@ public class HelloApplication extends Application {
             });
 
 
-
             HashMap<FlowPane, String> mapFromViewToSongId = new HashMap<>();
             GridPane songsList = (GridPane) homeScene.lookup("#songs_grid_pane");
 
@@ -300,7 +298,7 @@ public class HelloApplication extends Application {
                 }
                 FlowPane pane = getSongPane(p.songs.get(i));
                 songsList.add(pane, colCnt, rowCnt);
-                mapFromViewToSongId.put(pane,p.songs.get(i).getSongId());
+                mapFromViewToSongId.put(pane, p.songs.get(i).getSongId());
                 colCnt++;
                 if (colCnt > cols) {
                     rowCnt++;
@@ -511,7 +509,7 @@ public class HelloApplication extends Application {
                 }
                 FlowPane pane = getSongPane(p.songs.get(i));
                 songsList.add(pane, colCnt, rowCnt);
-                mapFromViewToSongId.put(pane,p.songs.get(i).getSongId());
+                mapFromViewToSongId.put(pane, p.songs.get(i).getSongId());
                 colCnt++;
                 if (colCnt > cols) {
                     rowCnt++;
@@ -523,7 +521,7 @@ public class HelloApplication extends Application {
                 songPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                       p.playSongWithId(p.getActualId(mapFromViewToSongId.get(songPane)));
+                        p.playSongWithId(p.getActualId(mapFromViewToSongId.get(songPane)));
 
                         updatePlayPause(searchScene, p);
                         updateCurrentSongName(searchScene, p);
@@ -535,10 +533,12 @@ public class HelloApplication extends Application {
             p.mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
                 if (!seekbar.isValueChanging()) {
                     seekbar.setValue(newTime.toSeconds());
-                    if ((seekbar.getMax()==seekbar.getValue())) {
+                    if ((seekbar.getMax() == seekbar.getValue())) {
                         p.next();
-                        try{
-                        Thread.sleep(100);}catch (Exception ignored){}
+                        try {
+                            Thread.sleep(100);
+                        } catch (Exception ignored) {
+                        }
 //                        seekbar.
                         updatePlayPause(searchScene, p);
                         updateCurrentSongName(searchScene, p);
@@ -626,7 +626,7 @@ public class HelloApplication extends Application {
 //        l.setAlignment(Pos.BASELINE_RIGHT);
 
         songImage = new ImageView(p.mapFromSongToImage.get(song));
-        if(p.mapFromSongToImage.get(song)==null) {
+        if (p.mapFromSongToImage.get(song) == null) {
             songImage.setImage(new Image((new File("src/main/resources/images/search/headphone.jpeg")).toURI().toString()));
         }
         songImage.setFitHeight(45);
