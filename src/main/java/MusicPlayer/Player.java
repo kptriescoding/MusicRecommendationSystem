@@ -206,7 +206,6 @@ public class Player {
 
     public void updtePlayList(String scene) {
         if (scene.equals("home")) {
-            reccomendedSongs= new Playlist(recommenderSystem.getRecommendation(currentUser.getUserId())).getSongs();
             songs = reccomendedSongs;
             if(!isPlaying)
             pause();

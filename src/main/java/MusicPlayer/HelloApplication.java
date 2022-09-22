@@ -204,6 +204,7 @@ public class HelloApplication extends Application {
     static void setUpStage(Scene scene, Stage stage, String present_scene) {
 
         if (present_scene.equals("home")) {
+            p.reccomendedSongs= new Playlist(p.recommenderSystem.getRecommendation(p.currentUser.getUserId())).getSongs();
 
             p.updtePlayList("home");
             Button bright = (Button) scene.lookup("#home");
