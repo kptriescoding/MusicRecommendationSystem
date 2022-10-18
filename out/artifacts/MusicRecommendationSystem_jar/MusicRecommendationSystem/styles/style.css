@@ -1,0 +1,16 @@
+.button-hover{
+   -fx-text-fill: white;
+
+}
+button-hover:hover{
+-fx-text-fill: white;
+}
+
+.split-pane
+{
+    -fx-padding: 0;
+}
+
+.split-pane-divider {
+   -fx-background-color: transparent;
+}

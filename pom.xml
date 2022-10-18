@@ -31,16 +31,21 @@
             <artifactId>opencv</artifactId>
             <version>3.2.0-0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tika</groupId>
-            <artifactId>tika-parsers</artifactId>
-            <version>1.4</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tika</groupId>-->
+<!--            <artifactId>tika-parsers</artifactId>-->
+<!--            <version>1.4</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.github.vincenzopalazzo</groupId>-->
 <!--            <artifactId>JFXToast</artifactId>-->
 <!--            <version>Tag</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.plushaze.traynotification</groupId>
+            <artifactId>TrayNotification</artifactId>
+            <version>0.3</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #181818; -fx-border-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.HelloController">
+   <children>
+      <Label alignment="CENTER" layoutX="243.0" layoutY="55.0" text="Login " textFill="WHITE" AnchorPane.leftAnchor="243.0">
+         <font>
+            <Font name="Ubuntu Light" size="35.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </Label>
+      <TextField fx:id="username" layoutX="215.0" layoutY="159.0" prefHeight="26.0" prefWidth="163.0" promptText="User Name">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="3.0" top="5.0" />
+         </padding></TextField>
+      <TextField fx:id="password" layoutX="215.0" layoutY="200.0" promptText="Password">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="3.0" top="5.0" />
+         </padding></TextField>
+      <Button fx:id="submit" layoutX="269.0" layoutY="262.0" mnemonicParsing="false" style="-fx-background-color: #c3c3c3;" text="LOGIN">
+         <padding>
+            <Insets bottom="7.0" left="14.0" right="14.0" top="7.0" />
+         </padding>
+      </Button>
+   </children>
+</AnchorPane>

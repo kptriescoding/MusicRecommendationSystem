@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.09797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" style="-fx-padding: 0 1 0 1;" styleClass="split-pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="139.0" style="-fx-background-color: black; -fx-padding: 0;">
+            <children>
+                <Button fx:id="home" layoutX="30.0" layoutY="78.0" mnemonicParsing="false" prefWidth="70" style="-fx-background-color: black; -fx-padding: 5 0 5 0;" styleClass="button-hover" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu" size="17.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect></Button>
+                <Button fx:id="search" layoutX="30.0" layoutY="134.0" mnemonicParsing="false" prefWidth="70" style="-fx-background-color: black; -fx-padding: 0 0 0 0;" text="Search" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font></Button>
+                <Button fx:id="like" layoutX="30.0" layoutY="183.0" mnemonicParsing="false" prefWidth="70" style="-fx-background-color: black; -fx-padding: 0 0 0 0;" text="Like" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font></Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(#3d3233 , black ); -fx-padding: 0;">
+            <children>
+                <AnchorPane layoutX="16.0" layoutY="1030.0" prefHeight="42.0" prefWidth="1696.0" />
+                <ScrollPane hbarPolicy="NEVER" layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="NEVER">
+                    <GridPane fx:id="songs_grid_pane" layoutX="36.0" layoutY="188.0" prefHeight="425.0" prefWidth="1078.0" style="-fx-padding: 0;">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100" />
+                        </columnConstraints>
+                        <!--                    <rowConstraints>-->
+                        <!--                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                        <!--                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                        <!--                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                        <!--                    </rowConstraints>-->
+                    </GridPane>
+                </ScrollPane>
+
+                <AnchorPane layoutX="4.0" layoutY="650.0" prefHeight="68.0" prefWidth="1143.0" style="-fx-background-color: #181818;">
+                    <children>
+                  <Slider fx:id="seekbar" layoutX="358.0" layoutY="45.0" maxHeight="21.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="329.0" />
+                  <ImageView fx:id="album_art_current_song" fitHeight="51.0" fitWidth="60.0" layoutX="38.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+
+                        <ImageView fx:id="play_view" fitHeight="37.0" fitWidth="57.0" layoutX="508.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/player/play.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="next_view" fitHeight="37.0" fitWidth="57.0" layoutX="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/player/next.png" />
+                            </image>
+                        </ImageView>
+
+                        <ImageView fx:id="prev_view" fitHeight="37.0" fitWidth="57.0" layoutX="415.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/player/prev.png" />
+                            </image>
+                        </ImageView>
+                  <Label fx:id="current_song_name" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="23.0" prefHeight="24.0" prefWidth="140.0" text="Song" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Ubuntu" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Label>
+
+                    </children>
+                </AnchorPane>
+                <StackPane alignment="CENTER" layoutX="36.0" layoutY="14.0" prefHeight="145.0" prefWidth="1078.0" style="-fx-background-color: linear-gradient(to left top, #3d3233 , black 80%); -fx-font-size: 50; -fx-background-image: url('../../../images/search/headphone.jpeg'); -fx-font-family: ubuntu;">
+                    <Text fill="#e8e8e8" style="-fx-font-size: 50; -fx-background-image: url('../../../images/search/headphone.jpeg'); -fx-font-family: ubuntu; " text="Music Recommender" textAlignment="CENTER" />
+                </StackPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

@@ -55,9 +55,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-//        p.fetchSongs("src/main/resources/songs");
-
-
         FXMLLoader homeLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         FXMLLoader playListLoader = new FXMLLoader(HelloApplication.class.getResource("playlist.fxml"));
         FXMLLoader searchLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
@@ -73,9 +70,9 @@ public class HelloApplication extends Application {
         p = new Player(stage, homeScene, currentUser);
         p.addAlbumArts(homeScene);
 
-
+stage.setFullScreen(false);
         universalStage.setTitle("DK Music PLayer just...play it");
-
+        stage.setResizable(false);
         universalStage.setScene(loginScene);
 
         TextField username, password;
@@ -116,6 +113,26 @@ public class HelloApplication extends Application {
                         }
 
                     }
+                }else {
+                    if (password.getText().equals("password")) {
+                        universalStage.close();
+                        universalStage.setScene(homeScene);
+                        universalStage.show();
+                        currentUser = new User(username.getText(), username.getText(), password.getText());
+                        try {
+                            p = new Player(stage, homeScene, currentUser);
+                            p.addAlbumArts(homeScene);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2.5), ev -> {
+                            setUpStage(homeScene, universalStage, "home");
+
+                        }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
+                    }
                 }
             }
         });
@@ -150,6 +167,26 @@ public class HelloApplication extends Application {
                         e.printStackTrace();
                     }
 
+                }
+            }else {
+                if (password.getText().equals("password")) {
+                    universalStage.close();
+                    universalStage.setScene(homeScene);
+                    universalStage.show();
+                    currentUser = new User(username.getText(), username.getText(), password.getText());
+                    try {
+                        p = new Player(stage, homeScene, currentUser);
+                        p.addAlbumArts(homeScene);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2.5), ev -> {
+                        setUpStage(homeScene, universalStage, "home");
+
+                    }));
+                    timeline.setCycleCount(1);
+                    timeline.play();
                 }
             }
 
@@ -211,7 +248,7 @@ public class HelloApplication extends Application {
 
             bright.setTextFill(Color.rgb(255, 255, 255));
             dull2.setTextFill(Color.rgb(200, 180, 200));
-        }  else {
+        } else {
             Button bright = (Button) scene.lookup("#search");
             Button dull2 = (Button) scene.lookup("#home");
             bright.setTextFill(Color.rgb(255, 255, 255));
@@ -633,28 +670,36 @@ public class HelloApplication extends Application {
         songname.setAlignment(Pos.TOP_CENTER);
         songname.setPrefWidth(450);
 
-        File bip = new File(song.getPath());
-        Media hit = new Media(bip.toURI().toString());
-        MediaPlayer m = new MediaPlayer(hit);
+        File bip;
+        Media hit;
+        MediaPlayer m;
 
-        songduration = new Label(String.valueOf(m.getTotalDuration().toSeconds()));
+        try {
+            bip = new File(song.getPath());
+            hit = new Media(bip.toURI().toString());
+            m = new MediaPlayer(hit);
+            songduration = new Label(String.valueOf(m.getTotalDuration().toSeconds()));
+
+
 //        songduration.setPrefHeight(40);
 //        songduration.setFont(Font.loadFont("ubuntu", 13));
-        songduration.setTextFill(Color.rgb(255, 255, 255));
-        songduration.setPadding(new Insets(5, 10, 5, 10));
-        songduration.setPrefWidth(50);
+            songduration.setTextFill(Color.rgb(255, 255, 255));
+            songduration.setPadding(new Insets(5, 10, 5, 10));
+            songduration.setPrefWidth(50);
 
-        songImage.setX(flowPane.getLayoutX());
+            songImage.setX(flowPane.getLayoutX());
 
-        flowPane.setPadding(new Insets(1, 4, 1, 1));
-        flowPane.setPrefWidth(600);
+            flowPane.setPadding(new Insets(1, 4, 1, 1));
+            flowPane.setPrefWidth(600);
 //        flowPane.setPrefHeight(80);
-        flowPane.setBackground(Background.EMPTY);
-        flowPane.setRowValignment(VPos.CENTER);
-        flowPane.setAlignment(Pos.CENTER);
-        flowPane.getChildren().addAll(songImage);
-        flowPane.getChildren().add(songname);
-        flowPane.getChildren().addAll(songduration);
+            flowPane.setBackground(Background.EMPTY);
+            flowPane.setRowValignment(VPos.CENTER);
+            flowPane.setAlignment(Pos.CENTER);
+            flowPane.getChildren().addAll(songImage);
+            flowPane.getChildren().add(songname);
+            flowPane.getChildren().addAll(songduration);
+        } catch (Exception e) {
+        }
 //        flowPane.setBorder(Border.stroke(Color.rgb(255, 255, 255)));
         songImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

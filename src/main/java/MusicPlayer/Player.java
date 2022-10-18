@@ -50,6 +50,7 @@ public class Player {
         users.put("user0", "162309");
 
 
+
         String songPath = "src/main/java/CSVFiles/song_data.csv";
         String userTablePath = "src/main/java/CSVFiles/user_table.csv";
 
@@ -93,11 +94,6 @@ public class Player {
 
         }
 
-    }
-
-    public ArrayList<SongData> getUserRecommendedSongs(User user) {
-        Table t = this.recommenderSystem.getRecommendation(user.getName());
-        return new Playlist(t).getSongs();
     }
 
     public void pause() {
@@ -158,7 +154,10 @@ public class Player {
 
 
     public void playSongWithId(int id) {
-        if (id == currentIndex) return;
+        if (id == currentIndex){
+            updateUser(allSongsReccomended.get(currentIndex).getSongId());
+            return;
+        }
         if (this.mediaPlayer != null)
             this.mediaPlayer.pause();
         currentIndex = id;
@@ -172,8 +171,6 @@ public class Player {
         updateUser(allSongsReccomended.get(currentIndex).getSongId());
 
     }
-
-
 
     public int getActualId(String id) {
         for (int i = 0; i < allSongsReccomended.size(); i++) {
