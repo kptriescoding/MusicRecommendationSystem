@@ -103,6 +103,9 @@ stage.setFullScreen(false);
                         timeline.play();
 
                     } else {
+                        Alert a = new Alert(Alert.AlertType.NONE);
+                        a.show();
+
                         System.out.println("Wrong Password... TryAgain...");
                         try {
                             submit.setText("Wrong Password... TryAgain...");
@@ -158,6 +161,12 @@ stage.setFullScreen(false);
                     timeline.play();
 
                 } else {
+                    Alert a = new Alert(Alert.AlertType.WARNING);
+                    a.setTitle("Passoword Incorrect");
+                    a.setHeaderText("Password Incorrect");
+                    a.setContentText("Wrong Passoword!!! Try Again");
+                    a.show();
+
                     System.out.println("Wrong Password... TryAgain...");
                     try {
                         submit.setText("Wrong Password... TryAgain...");
@@ -170,6 +179,10 @@ stage.setFullScreen(false);
                 }
             }else {
                 if (password.getText().equals("password")) {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setHeaderText("New User Created ");
+                    a.setContentText("Username not found so new user created with username "+username.getText());
+                    a.showAndWait();
                     universalStage.close();
                     universalStage.setScene(homeScene);
                     universalStage.show();
