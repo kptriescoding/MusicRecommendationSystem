@@ -200,6 +200,12 @@ stage.setFullScreen(false);
                     }));
                     timeline.setCycleCount(1);
                     timeline.play();
+                }else
+                {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setHeaderText("Password not matched ");
+                    a.setContentText("Username not found use 'password' as password  with username:"+username.getText());
+                    a.showAndWait();
                 }
             }
 
